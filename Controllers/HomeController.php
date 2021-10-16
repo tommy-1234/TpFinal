@@ -39,7 +39,7 @@
 
         public function ShowListView(){
 
-            require_once(VIEWS_PATH."company-list.php");
+            require_once(VIEWS_PATH."company-add.php"); //cambiar add por list
 
         }
     }

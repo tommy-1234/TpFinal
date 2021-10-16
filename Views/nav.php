@@ -8,6 +8,12 @@
           </li>
           <li class="nav-item">
                <a class="nav-link" href="<?php echo FRONT_ROOT ?>Student/ShowListView">Listar Alumnos</a>
+          </li>
+          <li class="nav-item">
+               <a class="nav-link" href="<?php echo FRONT_ROOT ?>Company/ShowListView">Listar company</a>
+          </li>   
+          <li class="nav-item">
+               <a class="nav-link" href="<?php echo FRONT_ROOT ?>Home/Logout">Cerrar Session</a>
           </li>          
      </ul>
 </nav>

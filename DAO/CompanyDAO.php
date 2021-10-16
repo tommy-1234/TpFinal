@@ -9,11 +9,13 @@ use Models\Company as Company;
     {
         private $companyList = array();
         private $fileName = ROOT."Data/Companies.json";
+        private $contId = 0; //Contador de ID, posible borrar con BASE DE DATOS
 
         function Add($company){  //Agrega una empresa
 
             $this->RetrieveData();
-            array_push($companyList, $company);
+            $company->setIdCompany($this->contId+1);
+            array_push($this->companyList, $company);
             $this->SaveData();
         }
 
@@ -75,7 +77,7 @@ use Models\Company as Company;
                 $valuesArray['companyPhone'] = $company->getCompanyPhone();
                 $valuesArray['companyLinkedin'] = $company->getCompanyLinkedin();
                 $valuesArray['companyAddres'] = $company->getCompanyAddress();
-                array_push($arrayToEncode, $company);
+                array_push($arrayToEncode, $valuesArray);
             }
 
             $jsonContent = json_encode($arrayToEncode, JSON_PRETTY_PRINT);
@@ -92,6 +94,7 @@ use Models\Company as Company;
                 foreach($arrayToDecode as $valuesArray){
                     $company = new Company();
                     $company->setIdCompany($valuesArray['idCompany']);
+                    $this->contId = $valuesArray['idCompany'];
                     $company->setCompanyName($valuesArray['companyName']);
                     $company->setCompanyDescription($valuesArray['CompanyDescription']);
                     $company->setCompanyEmail($valuesArray['companyEmail']);
