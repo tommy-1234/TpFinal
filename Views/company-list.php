@@ -1,18 +1,19 @@
 <?php
 require_once("nav.php");
-echo "Se ha logeado correctamente, aca falta desarrollar la lista de compañias";
 ?>
-<form action="<?php echo FRONT_ROOT."Company/Remove"?>" method="post">
+
+<div class="wrapper row4">
+  <main class="hoc container clear"> 
+    <!-- main body -->
+    <div class="content"> 
+      <div class="scrollable">
+      <form action="<?php echo FRONT_ROOT."Company/Detaile"?>" method="post">
         <table style="text-align:center;">
           <thead>
             <tr>
-              <th style ="width: 15%;">name</th>
-              <th style="width: 15%;">descr</th>
-              <th style="width: 30%;">email</th>
-              <th style="width: 30%;">phone</th>
-              <th style="width: 15%;">linkedn</th>
-              <th style="width: 15%;">adrress</th>
-              <th style="width: 10%;">Action</th>
+              <th style ="width: 20%;">Nombre de la empresa</th>
+              <th style="width: 50%;">Descripcion</th>
+              <th style="width: 10%;"></th>
             </tr>
           </thead>
           <tbody>     
@@ -20,13 +21,16 @@ echo "Se ha logeado correctamente, aca falta desarrollar la lista de compañias"
                   <tr>
                     <td><?php echo $company->getCompanyName();?>
                     <td><?php echo $company->getCompanyDescription();?></td>
-                    <td><?php echo $company->getCompanyEmail();?></td>
-                    <td><?php echo $company->getCompanyPhone();?></td>
-                    <td><?php echo $company->getCompanyLinkedin();?></td>
-                    <td><?php echo $company->getCompanyAddress();?></td>
-                    <!-- Agregar boton para mandar ID y borrarlo -->
+                    <td>
+                      <button type="submit" class="btn" name="idCompany" value="<?php echo $company->getIdCompany() ?>"> Mostrar mas </button>
+                    </td>
                   </tr>
                   <?php }?>
           </tbody>
         </table></form> 
-
+      </div>
+    </div>
+    <!-- / main body -->
+    <div class="clear"></div>
+  </main>
+</div>

@@ -1,3 +1,38 @@
 [
-    
+    {
+        "idCompany": 1,
+        "companyName": "google",
+        "CompanyDescription": "empresa de internete",
+        "companyEmail": "google@google.com",
+        "companyPhone": "123456879",
+        "companyLinkedin": "GoogleLinkedin",
+        "companyAddres": "Fisco 620"
+    },
+    {
+        "idCompany": 2,
+        "companyName": "Ubisoft",
+        "CompanyDescription": "Bugisoft",
+        "companyEmail": "ubi@ubisoft.com",
+        "companyPhone": "22359874",
+        "companyLinkedin": "UbiLinkedin",
+        "companyAddres": "jiluio 442"
+    },
+    {
+        "idCompany": 3,
+        "companyName": "qwe",
+        "CompanyDescription": "qwe",
+        "companyEmail": "qwe@qwe",
+        "companyPhone": "123",
+        "companyLinkedin": "qwef",
+        "companyAddres": "qwe12"
+    },
+    {
+        "idCompany": 4,
+        "companyName": "Square Enix",
+        "CompanyDescription": "squaresoft era 14 veces mejor",
+        "companyEmail": "square@enix.com",
+        "companyPhone": "999665881",
+        "companyLinkedin": "SquareEnix",
+        "companyAddres": "MICHIGAN620"
+    }
 ]

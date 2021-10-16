@@ -5,23 +5,23 @@ require_once("nav.php");
     <table>
         <thead>
             <tr>
-                <th>Company Name</th>
-                <th>Company Description</th>
-                <th>Company Email</th>
-                <th>Company Phone</th>
-                <th>Company Linkedin</th>
-                <th>Companu Address</th>
+                <th>Nombre de la empresa</th>
+                <th>Descripcion de la empresa</th>
+                <th>Email de la empresa</th>
+                <th>Numero de telefono de la empresa</th>
+                <th>Linkedin de la empresa</th>
+                <th>Direccion de la empresa</th>
                 <th></th>
             </tr>
         </thead>
         <tbody align="center">
             <td><input type="text" name="companyName" required></td>
-            <td><input type="text" name="companyDescription" required></td>
+            <td><input type="textarea" name="companyDescription" required></td>
             <td><input type="email" name="companyEmail" required></td>
             <td><input type="number" name="companyPhone" required></td>
             <td><input type="text" name="companyLinkedin" required></td>
             <td><input type="text" name="companyAddress" required></td>
         </tbody>
     </table>
-    <input type="submit" value="SUBMIT">
+    <input type="submit" value="AGREGAR">
 </form>

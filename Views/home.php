@@ -15,7 +15,7 @@
 </div>
   <div class="div-login">  
     <form action="<?php echo FRONT_ROOT."Home/Login" ?>" method="post">
-        <input class="input-login" type="text" name="userEmail" placeholder="User Email" required>
+        <input class="input-login" type="email" name="userEmail" placeholder="User Email" required>
         <button class="btn-login btn" type="submit" name="">Login</button>
       </form>
   </div>

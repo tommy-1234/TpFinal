@@ -35,6 +35,7 @@ use Models\Company as Company;
             $this->companyList = $newArray;
             $this->SaveData();
         }
+        
         function Update($idCompany, $newCompany){   //la idea es pasarle el id de la empresa original y el objeto "actualizado" para que lo reemplace en el json con un remove mas un add
 
             $this->Remove($idCompany);
@@ -44,7 +45,6 @@ use Models\Company as Company;
         function GetOne($idCompany){   //Busca y devuelve una empresa mediante su ID
 
             $this->RetrieveData();
-            $searchCompany = null;
 
             foreach($this->companyList as $company){
 

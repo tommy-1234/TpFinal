@@ -38,6 +38,46 @@ class CompanyController {
 
         $this->companyDAO->Add($company);
 
+        $this->ShowAddView();
+    }
+
+    public function Detaile($idCompany){
+        $company = $this->companyDAO->GetOne($idCompany);
+        require_once(VIEWS_PATH."company-detail.php");
+    }
+
+    public function ShowUpdate($idCompany){
+        $company = $this->companyDAO->GetOne($idCompany);
+        $_SESSION['company'] = $company;
+        require_once(VIEWS_PATH."company-update.php");
+    }
+
+    public function Update($companyName=null, $companyDescription=null, $companyEmail=null, $companyPhone=null, $companyLinkedin=null, $companyAddress=null){
+        
+        $company = new Company();
+        $company =  $_SESSION['company'];
+        
+        if($companyName!=null){
+            $company->setCompanyName($companyName);
+        }
+        if($companyDescription!=null){
+            $company->setCompanyDescription($companyDescription);
+        }
+        if($companyEmail!=null){
+            $company->setCompanyEmail($companyEmail);
+        }
+        if($companyPhone!=null){
+            $company->setCompanyPhone($companyPhone);
+        }
+        if($companyLinkedin!=null){
+            $company->setCompanyLinkedin($companyLinkedin);
+        }
+        if($companyAddress != null){
+           $company->setCompanyAddress($companyAddress); 
+        } 
+
+        $this->companyDAO->Update($company->getIdCompany(), $company);
+
         $this->ShowListView();
     }
 
