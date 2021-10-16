@@ -1,22 +1,15 @@
 <?php 
     include_once('header.php');
 ?>
-<div class="wrapper row1">
-  <header id="header" class="clear"> 
-    <div id="logo" class="fl_left">
-      <h1>WELCOME</h1>
-    </div>
-  </header>
-</div>
 
-<div class="wrapper row3 img-login">
-  <div class="div-login"><br>
-    <h1 class="text-login">LOGIN TO MANAGE</h1>
+<div class="text-center">
+    <form action="<?php echo FRONT_ROOT."Home/Login" ?>" method="post" class="form-signin">
+      <img class="mb-4" src="/laboratorio4/TpFinal/Views/img/bootstrap-solid.svg" alt="" width="72" height="72">
+      <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+      <label for="inputEmail" class="sr-only">Email address</label>
+      <input type="email" id="inputEmail" name="userEmail" class="form-control" placeholder="Email address" required autofocus>
+      <br>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    </form>
 </div>
-  <div class="div-login">  
-    <form action="<?php echo FRONT_ROOT."Home/Login" ?>" method="post">
-        <input class="input-login" type="email" name="userEmail" placeholder="User Email" required>
-        <button class="btn-login btn" type="submit" name="">Login</button>
-      </form>
-  </div>
-</div>
+   
