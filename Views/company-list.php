@@ -1,4 +1,5 @@
 <?php
+require_once("header.php");
 require_once("nav.php");
 ?>
 
@@ -11,8 +12,8 @@ require_once("nav.php");
         <table style="text-align:center;">
           <thead>
             <tr>
-              <th style ="width: 20%;">Nombre de la empresa</th>
-              <th style="width: 50%;">Descripcion</th>
+              <th style ="width: 20%;">Company Name</th>
+              <th style="width: 50%;">Company Description</th>
               <th style="width: 10%;"></th>
             </tr>
           </thead>
@@ -22,10 +23,10 @@ require_once("nav.php");
                     <td><?php echo $company->getCompanyName();?>
                     <td><?php echo $company->getCompanyDescription();?></td>
                     <td>
-                      <button type="submit" class="btn" name="idCompany" value="<?php echo $company->getIdCompany() ?>"> Mostrar mas </button>
+                      <button type="submit" class="btn" name="idCompany" value="<?php echo $company->getIdCompany() ?>"> More Details </button>
                     </td>
                   </tr>
-                  <?php }?>
+                  <?php } ?>
           </tbody>
         </table></form> 
       </div>
@@ -34,3 +35,6 @@ require_once("nav.php");
     <div class="clear"></div>
   </main>
 </div>
+<?php
+require_once("footer.php");
+

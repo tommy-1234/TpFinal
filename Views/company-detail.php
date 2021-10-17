@@ -10,14 +10,14 @@ require_once("nav.php");
         <table style="text-align:center;">
           <thead>
             <tr>
-              <th style ="width: 15%;">Nombre</th>
-              <th style="width: 15%;">Descripcion</th>
+              <th style ="width: 15%;">Name</th>
+              <th style="width: 15%;">Description</th>
               <th style="width: 30%;">Email</th>
-              <th style="width: 30%;">Telefono</th>
+              <th style="width: 30%;">Phone</th>
               <th style="width: 15%;">Linkedin</th>
-              <th style="width: 10%;">Direccion</th>
+              <th style="width: 10%;"><Address></Address></th>
               <?php if(isset($_SESSION['loggedAdmin'])){?>
-                <th style="width: 10%;">Accion</th>
+                <th style="width: 10%;">Action</th>
               <?php }?>
             </tr>
           </thead>
@@ -31,10 +31,10 @@ require_once("nav.php");
                   <td><?php echo $company->getCompanyAddress();?></td>
                   <?php if(isset($_SESSION['loggedAdmin'])){ ?>
                     <td>
-                      <button type="submit" class="btn" name="idCompany" value="<?php echo $company->getIdCompany() ?>"> Borrar </button>
+                      <button type="submit" class="btn" name="idCompany" value="<?php echo $company->getIdCompany() ?>"> Remove </button>
                     </td> 
                     <td>
-                      <button type="submit" class="btn" name="idCompany" value="<?php echo $company->getIdCompany() ?>" formaction="<?php echo FRONT_ROOT."Company/ShowUpdate"?>"> Modificar </button>
+                      <button type="submit" class="btn" name="idCompany" value="<?php echo $company->getIdCompany() ?>" formaction="<?php echo FRONT_ROOT."Company/ShowUpdate"?>"> Modify </button>
                     </td> 
                   <?php }?> 
                 </tr>

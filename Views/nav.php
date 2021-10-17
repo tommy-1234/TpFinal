@@ -12,13 +12,13 @@
           <li class="nav-item">
                <a class="nav-link" href="<?php echo FRONT_ROOT ?>Company/ShowListView">Listar Empresas</a>
           </li>   
-          <li class="nav-item">
-               <a class="nav-link" href="<?php echo FRONT_ROOT ?>Home/Logout">Cerrar Session</a>
-          </li>  
           <?php if(isset($_SESSION['loggedAdmin'])){ ?>
           <li class="nav-item">
-               <a class="nav-link" href="<?php echo FRONT_ROOT ?>Company/ShowAddView">Agregar Empresa</a>
+               <a class="nav-link" href="<?php echo FRONT_ROOT ?>Company/ShowAddView">Add Company</a>
           </li>                     
           <?php  }?>
+          <li class="nav-item">
+               <a class="nav-link" href="<?php echo FRONT_ROOT ?>Home/Logout">Logout</a>
+          </li>  
      </ul>
 </nav>

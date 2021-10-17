@@ -40,12 +40,11 @@ use Models\Company as Company;
 
             $this->Remove($idCompany);
             $this->Add($newCompany);
-        }  
-
+        }
         function GetOne($idCompany){   //Busca y devuelve una empresa mediante su ID
 
             $this->RetrieveData();
-
+            $searchCompany = null;
             foreach($this->companyList as $company){
 
                 if($idCompany == $company->getIdCompany()){
@@ -54,7 +53,6 @@ use Models\Company as Company;
                     break;
                 }
             }
-
             return $searchCompany;
         }
         
@@ -85,7 +83,9 @@ use Models\Company as Company;
         }
 
         private function RetrieveData(){   //Lee el archivo y guarda en una lista todas las empresas
-
+            
+            $this->companyList = array();
+            
             if(file_exists($this->fileName)){
 
                 $jsonContent = file_get_contents($this->fileName);

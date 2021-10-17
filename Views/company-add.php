@@ -5,12 +5,12 @@ require_once("nav.php");
     <table>
         <thead>
             <tr>
-                <th>Nombre de la empresa</th>
-                <th>Descripcion de la empresa</th>
-                <th>Email de la empresa</th>
-                <th>Numero de telefono de la empresa</th>
-                <th>Linkedin de la empresa</th>
-                <th>Direccion de la empresa</th>
+                <th>Company Name</th>
+                <th>Company Description</th>
+                <th>Company Email</th>
+                <th>Company phone</th>
+                <th>Company Linkedin</th>
+                <th>Company Address</th>
                 <th></th>
             </tr>
         </thead>

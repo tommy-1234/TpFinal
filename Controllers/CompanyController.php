@@ -84,7 +84,6 @@ class CompanyController {
     public function Remove($idCompany){
 
         $this->companyDAO->Remove($idCompany);
-
         $this->ShowListView();
     }
 }
