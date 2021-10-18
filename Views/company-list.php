@@ -11,10 +11,14 @@ if(isset($_SESSION['alert'])){
     <!-- main body -->
     <div class="content"> 
       <div class="scrollable">
-        <form action="<?php echo FRONT_ROOT."Company/Filter"?>" method="post" style="margin-top: 5px;">
-          <input type="text" name="filterCompany" placeholder="Company Name" style="background-color:coral; color:#fff;">
-          <input type="submit" value="FILTER" style="background-color:#48c; color: #fff; border-radius: 50%;">
-        </form>
+      
+      <br>
+      <form action="<?php echo FRONT_ROOT."Company/Filter"?>" method="post">
+        <input type="text" name="filterCompany" placeholder="Company Name">
+        <input type="submit" value="Filter">
+      </form>
+
+      
       <form action="<?php echo FRONT_ROOT."Company/Detaile"?>" method="post">
       <br>
         <table style="text-align:center;" class="table table-bordered">
