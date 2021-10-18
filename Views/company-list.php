@@ -1,6 +1,9 @@
 <?php
 require_once("header.php");
 require_once("nav.php");
+if(isset($_SESSION['alert'])){
+  $alert = $_SESSION['alert'];
+}
 ?>
 
 <div class="wrapper row4">
@@ -29,7 +32,10 @@ require_once("nav.php");
                   </tr>
                   <?php } ?>
           </tbody>
-        </table></form> 
+        </table>
+        <div class="alert alert-<?php echo $alert->getType()?>" role="alert" style="display: inline-block;  margin:auto">
+          <?php echo $alert->getMessage(); ?>
+        </div></form> 
       </div>
     </div>
     <!-- / main body -->
@@ -38,4 +44,5 @@ require_once("nav.php");
 </div>
 <?php
 require_once("footer.php");
-
+$_SESSION['alert'] = null;
+?>

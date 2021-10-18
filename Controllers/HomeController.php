@@ -24,17 +24,17 @@
         {
             $user = $this->userDAO->GetUserByEmail($userEmail);
 
-            if($user != null)
+            if($userEmail == "admin@admin.com")
             {
-                $_SESSION["loggedUser"] = $user;
-                $this->ShowListView();
-            }
-            else if($userEmail == "admin@admin.com"){
                 $user = new User();
                 $user->setFirstName("Admin");
                 $user->setEmail("admin@admin.com");
                 $_SESSION["loggedUser"] = $user;
                 $_SESSION['loggedAdmin'] = "Admin";
+                $this->ShowListView();
+            }
+            else if($user != null){
+                $_SESSION["loggedUser"] = $user;
                 $this->ShowListView();
             }else
                 $this->Index("Usuario y/o Contraseña incorrectos");
