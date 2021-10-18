@@ -1,15 +1,18 @@
 <?php
     namespace Controllers;
 
+    use DAO\CompanyDAO as CompanyDAO;
     use DAO\UserDAO as UserDAO;
     use Models\User as User;
 
     class HomeController
     {
         private $userDAO;
+        private $companyDAO;
 
         public function __construct(){
             $this->userDAO = new UserDAO();
+            $this->companyDAO = new CompanyDAO();
         }
 
         public function Index($message = "")
@@ -27,7 +30,11 @@
                 $this->ShowListView();
             }
             else if($userEmail == "admin@admin.com"){
-                $_SESSION['loggedAdmin'] = 'Admin';
+                $user = new User();
+                $user->setFirstName("Admin");
+                $user->setEmail("admin@admin.com");
+                $_SESSION["loggedUser"] = $user;
+                $_SESSION['loggedAdmin'] = "Admin";
                 $this->ShowListView();
             }else
                 $this->Index("Usuario y/o Contraseña incorrectos");
@@ -41,8 +48,9 @@
         }
 
         public function ShowListView(){
-
-            require_once(VIEWS_PATH."company-add.php"); //cambiar add por list
+            require_once(VIEWS_PATH."validate-session.php");
+            $companyList = $this->companyDAO->GetAll();
+            require_once(VIEWS_PATH."company-list.php"); 
 
         }
     }

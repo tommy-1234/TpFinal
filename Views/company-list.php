@@ -9,8 +9,9 @@ require_once("nav.php");
     <div class="content"> 
       <div class="scrollable">
       <form action="<?php echo FRONT_ROOT."Company/Detaile"?>" method="post">
-        <table style="text-align:center;">
-          <thead>
+      <br>
+        <table style="text-align:center;" class="table table-bordered">
+          <thead class="thead-dark">
             <tr>
               <th style ="width: 20%;">Company Name</th>
               <th style="width: 50%;">Company Description</th>

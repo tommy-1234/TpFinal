@@ -7,39 +7,55 @@ require_once("nav.php");
     <div class="content"> 
       <div class="scrollable">
       <form action="<?php echo FRONT_ROOT."Company/Remove"?>" method="post">
-        <table style="text-align:center;">
-          <thead>
-            <tr>
-              <th style ="width: 15%;">Name</th>
-              <th style="width: 15%;">Description</th>
-              <th style="width: 30%;">Email</th>
-              <th style="width: 30%;">Phone</th>
-              <th style="width: 15%;">Linkedin</th>
-              <th style="width: 10%;"><Address></Address></th>
-              <?php if(isset($_SESSION['loggedAdmin'])){?>
-                <th style="width: 10%;">Action</th>
-              <?php }?>
-            </tr>
-          </thead>
+        <br>
+        <table style="text-align:center;" class="table table-bordered">
           <tbody>  
                 <tr>
+                  <td style="font-weight:bold;" >Name</td>
                   <td><?php echo $company->getCompanyName();?>
+                </tr>
+                <tr>
+                  <td style="font-weight:bold;" >Description</td>
                   <td><?php echo $company->getCompanyDescription();?></td>
+                </tr>
+                <tr>
+                  <td style="font-weight:bold;">Email</td>
                   <td><?php echo $company->getCompanyEmail();?></td>
+                </tr>
+                <tr>
+                  <td style="font-weight:bold;">Phone</td>
                   <td><?php echo $company->getCompanyPhone();?></td>
+               </tr>
+                <tr>
+                  <td style="font-weight:bold;">Linkedin</td>
                   <td><?php echo $company->getCompanyLinkedin();?></td>
+                </tr>
+                <tr>
+                  <td style="font-weight:bold;">Address</td>
                   <td><?php echo $company->getCompanyAddress();?></td>
+                </tr>
+         </tbody>
+        </table>
+
+        <table>
+          <tbody>
                   <?php if(isset($_SESSION['loggedAdmin'])){ ?>
+                    <br>
                     <td>
                       <button type="submit" class="btn" name="idCompany" value="<?php echo $company->getIdCompany() ?>"> Remove </button>
                     </td> 
                     <td>
                       <button type="submit" class="btn" name="idCompany" value="<?php echo $company->getIdCompany() ?>" formaction="<?php echo FRONT_ROOT."Company/ShowUpdate"?>"> Modify </button>
                     </td> 
+                    <td>
+                      <button type="submit" name="" class="btn" value="" formaction="<?php echo FRONT_ROOT."Company/ShowListView" ?>" > Back </button>
+                    </td> 
+                    
                   <?php }?> 
-                </tr>
-          </tbody>
-        </table></form> 
+            </tbody>
+        </table>
+
+      </form> 
       </div>
     </div>
     <!-- / main body -->

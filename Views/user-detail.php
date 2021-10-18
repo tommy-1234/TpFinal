@@ -7,38 +7,39 @@
     <div class="content"> 
       <div class="scrollable">
       <form action="<?php echo FRONT_ROOT."Company/ShowListView" ?>" method="">
-        <table style="text-align:center;">
+        <br>
+        <table style="text-align:center; " class="table table-bordered">
           <tbody>
                   <tr>
-                    <td><?php echo "First Name :" ?></td>
+                    <td style="font-weight:bold;">First Name :</td>
                     <td><?php echo $user->getFirstName() ?></td>
                   </tr>
                   <tr>
-                    <td><?php echo "Last Name :" ?></td>
+                    <td style="font-weight:bold;">Last Name :</td>
                     <td><?php echo $user->getLastName() ?></td>
                   </tr>
                   <tr>
-                    <td><?php echo "DNI :" ?></td>
+                    <td style="font-weight:bold;">DNI :</td>
                     <td><?php echo $user->getDni() ?></td>
                   </tr>
                   <tr>
-                    <td><?php echo "File Number :" ?></td>
+                    <td style="font-weight:bold;">File Number :</td>
                     <td><?php echo $user->getFileNumber() ?></td>
                   </tr>
                   <tr>
-                    <td><?php echo "Gender :" ?></td>
+                    <td style="font-weight:bold;">Gender :</td>
                     <td><?php echo $user->getGender() ?></td>
                   </tr>
                   <tr>
-                    <td><?php echo "Birth Day :" ?></td>
+                    <td style="font-weight:bold;">Birth Day :</td>
                     <td><?php echo $user->getBirthDate() ?></td>
                   </tr>
                   <tr>
-                    <td><?php echo "eMail :" ?></td>
+                    <td style="font-weight:bold;">eMail :</td>
                     <td><?php echo $user->getEmail() ?></td>
                   </tr>
                   <tr>
-                    <td><?php echo "Phone Number :" ?></td>
+                    <td style="font-weight:bold;">Phone Number :</td>
                     <td><?php echo $user->getPhoneNumber() ?></td>
                   </tr>
           </tbody>

@@ -2,6 +2,7 @@
 require_once("nav.php");
 ?>
 <form action="<?php echo FRONT_ROOT."Company/Add"?>" method="post">
+    <br>
     <table>
         <thead>
             <tr>
@@ -23,5 +24,8 @@ require_once("nav.php");
             <td><input type="text" name="companyAddress" required></td>
         </tbody>
     </table>
-    <input type="submit" value="AGREGAR">
+    <!--<input type="submit" value="ADD"> -->
+    <br>
+    <button type="submit" class="btn">Add</button>
+    <button type="submit" name="" class="btn" value="" formaction="<?php echo FRONT_ROOT."Company/ShowListView" ?>" > Back </button>
 </form>

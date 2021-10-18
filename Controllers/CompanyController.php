@@ -18,10 +18,12 @@ class CompanyController {
     }
 
     public function ShowAddView(){
+        require_once(VIEWS_PATH."validate-session.php");
         require_once(VIEWS_PATH."company-add.php");
     }
 
     public function ShowListView(){
+        require_once(VIEWS_PATH."validate-session.php");
         $companyList = $this->companyDAO->GetAll();
         require_once(VIEWS_PATH."company-list.php");
     }
@@ -42,11 +44,13 @@ class CompanyController {
     }
 
     public function Detaile($idCompany){
+        require_once(VIEWS_PATH."validate-session.php");
         $company = $this->companyDAO->GetOne($idCompany);
         require_once(VIEWS_PATH."company-detail.php");
     }
 
     public function ShowUpdate($idCompany){
+        require_once(VIEWS_PATH."validate-session.php");
         $company = $this->companyDAO->GetOne($idCompany);
         $_SESSION['company'] = $company;
         require_once(VIEWS_PATH."company-update.php");
