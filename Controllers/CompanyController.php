@@ -128,5 +128,11 @@ class CompanyController {
              $this->ShowListView();
         }
     }
+
+    public function Filter($filterCompany){
+        $companyList = $this->companyDAO->Filter($filterCompany);
+
+        require_once(VIEWS_PATH."company-list.php");
+    }
 }
 ?>

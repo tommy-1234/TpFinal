@@ -34,5 +34,14 @@
         "companyPhone": "223215447",
         "companyLinkedin": "SoTFbIU",
         "companyAddres": "Marte galaxia 1"
+    },
+    {
+        "idCompany": 7,
+        "companyName": "Google",
+        "CompanyDescription": "Empresa de internete to pro",
+        "companyEmail": "google@gmail.com",
+        "companyPhone": "12345688",
+        "companyLinkedin": "GOOGLE",
+        "companyAddres": "google str 8"
     }
 ]

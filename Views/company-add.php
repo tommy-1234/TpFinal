@@ -29,7 +29,7 @@ if(isset($_SESSION['alert'])){
     </table>
     <!--<input type="submit" value="ADD"> -->
     <br>
-    <button type="submit" class="btn">Add</button>
+    <button type="submit" class="btn" >Add</button>
     <button type="submit" name="" class="btn" value="" formaction="<?php echo FRONT_ROOT."Company/ShowListView" ?>" > Back </button>
     <div style="display: inline-block; margin:auto" class="alert alert-<?php echo $alert->getType()?>" role="alert">
         <?php echo $alert->getMessage(); ?>

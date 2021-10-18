@@ -56,6 +56,18 @@ use Models\Company as Company;
             return $searchCompany;
         }
         
+        function Filter($companyName){
+            $this->RetrieveData();
+            $filterList = array();
+
+            foreach($this->companyList as $company){
+                if(strcasecmp($companyName, $company->getCompanyName()) == 0){
+                    array_push($filterList, $company);
+                }
+            }
+            return $filterList;
+        }
+
         function GetAll(){    //Devuelve una lista con todas las empresas
 
             $this->RetrieveData();
