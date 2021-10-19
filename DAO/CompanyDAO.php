@@ -61,7 +61,7 @@ use Models\Company as Company;
             $filterList = array();
 
             foreach($this->companyList as $company){
-//              if(strcasecmp($companyName, $company->getCompanyName()) == 0){
+
                 if(str_contains(strtoupper($company->getCompanyName()),strtoupper($companyName))){
                     array_push($filterList, $company);
                 }
