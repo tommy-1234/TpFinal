@@ -2,120 +2,190 @@
 
 namespace DAO;
 
+use DAO\Connection as Connection;
 use DAO\ICompanyDAO as ICompanyDAO;
 use Models\Company as Company;
 
     class CompanyDAO implements ICompanyDAO
     {
         private $companyList = array();
-        private $fileName = ROOT."Data/Companies.json";
-        private $contId = 0; //Contador de ID, posible borrar con BASE DE DATOS
+        private $tableName = "companies";
+        private $connection;
 
         function Add($company){  //Agrega una empresa
+  
+            try{
 
-            $this->RetrieveData();
-            $company->setIdCompany($this->contId+1);
-            array_push($this->companyList, $company);
-            $this->SaveData();
+                $query = "INSERT INTO ".$this->tableName."(companyName, companyDescription, companyEmail, companyPhone, companyLinkedin, companyAddres, companyLink) VALUES (:companyName, :companyDescription, :companyEmail, :companyPhone, :companyLinkedin, :companyAddres, :companyLink)";
+                
+                $parameters["companyName"] = $company->getCompanyName();
+                $parameters["companyDescription"] = $company->getCompanyDescription();
+                $parameters["companyEmail"] = $company->getCompanyEmail();
+                $parameters["companyPhone"] = $company->getCompanyPhone();
+                $parameters["companyLinkedin"] = $company->getCompanyLinkedin();
+                $parameters["companyAddres"] = $company->getCompanyAddress();
+                $parameters["companyLink"] = $company->getCompanyLink();
+                
+                $this->connection = Connection::GetInstance();
+                $this->connection->ExecuteNonQuery($query, $parameters);
+
+            }catch(Exception $ex){
+
+                throw $ex;
+
+            }
         }
 
         function Remove($idCompany){  //Elimina un empresa mediante si ID
 
-            $this->RetrieveData();
-            $newArray = array();
+            try{
 
-            foreach($this->companyList as $company){
+                $query = "DELETE FROM ".$this->tableName." WHERE (companyId = :companyId)";
 
-                if($idCompany != $company->getIdCompany()){
+                $parameters["companyId"] =  $idCompany;
 
-                    array_push($newArray, $company);
-                }
+                $this->connection = Connection::GetInstance();
+                $this->connection->ExecuteNonQuery($query, $parameters);
+            
+            }catch(Exception $ex){
+
+                throw $ex;
+
             }
-
-            $this->companyList = $newArray;
-            $this->SaveData();
         }
         
-        function Update($idCompany, $newCompany){   //la idea es pasarle el id de la empresa original y el objeto "actualizado" para que lo reemplace en el json con un remove mas un add
+        function Update($idCompany, $newCompany){ 
+            
+            try{
+                    
+                $query = "UPDATE ".$this->tableName." SET companyName = :companyName, companyDescription = :companyDescription,  companyEmail = :companyEmail, companyPhone = :companyPhone, companyLinkedin = :companyLinkedin, companyAddres = :companyAddres, companyLink= :companyLink
+                where companyId = ".$idCompany;
 
-            $this->Remove($idCompany);
-            $this->Add($newCompany);
+                $parameters["companyName"] = $newCompany->getCompanyName();
+                $parameters["companyDescription"] = $newCompany->getCompanyDescription();
+                $parameters["companyEmail"] = $newCompany->getCompanyEmail();
+                $parameters["companyPhone"] = $newCompany->getCompanyPhone();
+                $parameters["companyLinkedin"] = $newCompany->getCompanyLinkedin();
+                $parameters["companyAddres"] = $newCompany->getCompanyAddress();
+                $parameters["companyLink"] = $newCompany->getCompanyLink();
+                
+                $this->connection = Connection::GetInstance();
+                $this->connection->ExecuteNonQuery($query, $parameters);
+
+            }catch(Exception $ex){
+
+                throw $ex;
+
+            }
         }
+
         function GetOne($idCompany){   //Busca y devuelve una empresa mediante su ID
 
-            $this->RetrieveData();
-            $searchCompany = null;
-            foreach($this->companyList as $company){
 
-                if($idCompany == $company->getIdCompany()){
-                    
-                    $searchCompany = $company;
-                    break;
-                }
+            try{
+
+                $companyList = array();
+
+                $query = "SELECT * FROM ".$this->tableName. " WHERE companyId = :companyId";
+                $parameters["companyId"] = $idCompany;
+
+                $this->connection = Connection::GetInstance();
+                $resultSet = $this->connection->Execute($query, $parameters);
+
+                $row = $resultSet[0];
+
+                $company = new Company();
+
+                $company->setIdCompany($row["companyId"]);
+                $company->setCompanyName($row["companyName"]);
+                $company->setCompanyDescription($row["companyDescription"]);
+                $company->setCompanyEmail($row["companyEmail"]);
+                $company->setCompanyPhone($row["companyPhone"]);
+                $company->setCompanyLinkedin($row["companyLinkedin"]);
+                $company->setCompanyAddress($row["companyAddres"]);
+                $company->setCompanyLink($row["companyLink"]);
+
+                return $company;           
+                
+            }catch(Exception $ex){
+
+                throw $ex;
+
             }
-            return $searchCompany;
         }
         
         function Filter($companyName){
-            $this->RetrieveData();
-            $filterList = array();
+            try{
 
-            foreach($this->companyList as $company){
+                $parameters = array();
+                $companyList = array();
 
-                if(str_contains(strtoupper($company->getCompanyName()),strtoupper($companyName))){
-                    array_push($filterList, $company);
+                $query = "SELECT * FROM ".$this->tableName. ' WHERE companyName LIKE "%'.$companyName.'%"';     //SI USO PARAMETROS ME DA ERROR
+
+
+                //$parameters["companyName"] = $companyName;                //SI USO PARAMETROS ME DA ERROR
+                
+                
+                $this->connection = Connection::GetInstance();
+                $resultSet = $this->connection->Execute($query);            //SI USO PARAMETROS ME DA ERROR
+                
+                
+                foreach($resultSet as $row){
+                    $company = new Company();
+
+                    $company->setIdCompany($row["companyId"]);
+                    $company->setCompanyName($row["companyName"]);
+                    $company->setCompanyDescription($row["companyDescription"]);
+                    $company->setCompanyEmail($row["companyEmail"]);
+                    $company->setCompanyPhone($row["companyPhone"]);
+                    $company->setCompanyLinkedin($row["companyLinkedin"]);
+                    $company->setCompanyAddress($row["companyAddres"]);
+                    $company->setCompanyLink($row["companyLink"]);
+
+                    array_push($companyList, $company);
                 }
+               
+                return $companyList;           
+                
+            }catch(Exception $ex){
+
+                throw $ex;
+
             }
-            return $filterList;
         }
 
         function GetAll(){    //Devuelve una lista con todas las empresas
+            try{
 
-            $this->RetrieveData();
-            return $this->companyList;
-        }
+                $companyList = array();
 
-        private function SaveData(){  //guarda en un archivo todas las empresas enlistadas
-            
-            $arrayToEncode = array();
-
-            foreach($this->companyList as $company){
-
-                $valuesArray['idCompany'] = $company->getIdCompany();
-                $valuesArray['companyName'] = $company->getCompanyName();
-                $valuesArray['CompanyDescription'] = $company->getCompanyDescription();
-                $valuesArray['companyEmail'] = $company->getCompanyEmail();
-                $valuesArray['companyPhone'] = $company->getCompanyPhone();
-                $valuesArray['companyLinkedin'] = $company->getCompanyLinkedin();
-                $valuesArray['companyAddres'] = $company->getCompanyAddress();
-                array_push($arrayToEncode, $valuesArray);
-            }
-
-            $jsonContent = json_encode($arrayToEncode, JSON_PRETTY_PRINT);
-            file_put_contents($this->fileName, $jsonContent);
-        }
-
-        private function RetrieveData(){   //Lee el archivo y guarda en una lista todas las empresas
-            
-            $this->companyList = array();
-            
-            if(file_exists($this->fileName)){
-
-                $jsonContent = file_get_contents($this->fileName);
-                $arrayToDecode = ($jsonContent) ? json_decode($jsonContent, true) : array();
-
-                foreach($arrayToDecode as $valuesArray){
+                $query = "SELECT * FROM ".$this->tableName;
+                
+                $this->connection = Connection::GetInstance();
+                $resultSet = $this->connection->Execute($query);
+                
+                
+                foreach($resultSet as $row){
                     $company = new Company();
-                    $company->setIdCompany($valuesArray['idCompany']);
-                    $this->contId = $valuesArray['idCompany'];
-                    $company->setCompanyName($valuesArray['companyName']);
-                    $company->setCompanyDescription($valuesArray['CompanyDescription']);
-                    $company->setCompanyEmail($valuesArray['companyEmail']);
-                    $company->setCompanyPhone($valuesArray['companyPhone']);
-                    $company->setCompanyLinkedin($valuesArray['companyLinkedin']);
-                    $company->setCompanyAddress($valuesArray['companyAddres']);
-                    array_push($this->companyList, $company);
+
+                    $company->setIdCompany($row["companyId"]);
+                    $company->setCompanyName($row["companyName"]);
+                    $company->setCompanyDescription($row["companyDescription"]);
+                    $company->setCompanyEmail($row["companyEmail"]);
+                    $company->setCompanyPhone($row["companyPhone"]);
+                    $company->setCompanyLinkedin($row["companyLinkedin"]);
+                    $company->setCompanyAddress($row["companyAddres"]);
+                    $company->setCompanyLink($row["companyLink"]);
+
+                    array_push($companyList, $company);
                 }
+               
+                return $companyList;           
+                
+            }catch(Exception $ex){
+
+                throw $ex;
+
             }
         }
     }

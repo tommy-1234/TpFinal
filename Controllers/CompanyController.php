@@ -30,7 +30,7 @@ class CompanyController {
         require_once(VIEWS_PATH."company-list.php");
     }
 
-    public function Add($companyName, $companyDescription, $companyEmail, $companyPhone, $companyLinkedin, $companyAddress){
+    public function Add($companyName, $companyDescription, $companyEmail, $companyPhone, $companyLinkedin, $companyAddress, $companyLink){
 
         try{
 
@@ -42,6 +42,7 @@ class CompanyController {
             $company->setCompanyPhone($companyPhone);
             $company->setCompanyLinkedin($companyLinkedin);
             $company->setCompanyAddress($companyAddress);
+            $company->setCompanyLink($companyLink);
 
             $this->companyDAO->Add($company);
 
@@ -71,7 +72,7 @@ class CompanyController {
         require_once(VIEWS_PATH."company-update.php");
     }
 
-    public function Update($companyName=null, $companyDescription=null, $companyEmail=null, $companyPhone=null, $companyLinkedin=null, $companyAddress=null){
+    public function Update($companyName=null, $companyDescription=null, $companyEmail=null, $companyPhone=null, $companyLinkedin=null, $companyAddress=null, $companyLink=null){
         
         $alert = new Alert("", "");
 
@@ -97,6 +98,9 @@ class CompanyController {
             if($companyAddress != null){
                $company->setCompanyAddress($companyAddress); 
             } 
+            if($companyLink!=null){
+                $company->setCompanyLink($companyLink);
+            }
 
             $this->companyDAO->Update($company->getIdCompany(), $company);
             $alert->setType ('success');

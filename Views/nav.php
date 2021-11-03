@@ -3,17 +3,53 @@
           <strong>Rekluting</strong>
      </span>
      <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-               <a class="nav-link" href="<?php echo FRONT_ROOT ?>Company/ShowListView">Companies List</a>
+
+     <!--     <li class="nav-item">
+               <a class="nav-link" href="<?php // echo FRONT_ROOT ?>Company/ShowListView">Companies List</a>
           </li>   
-          <?php if(isset($_SESSION['loggedAdmin'])){ ?>
+          <?php //if(isset($_SESSION['loggedAdmin'])){ ?>
           <li class="nav-item">
-               <a class="nav-link" href="<?php echo FRONT_ROOT ?>Company/ShowAddView">Add Company</a>
+               <a class="nav-link" href="<?php // echo FRONT_ROOT ?>Company/ShowAddView">Add Company</a>
           </li>                     
-          <?php  }?>
+          <?php  // }?>
           <li class="nav-item">
-               <a class="nav-link" href="<?php echo FRONT_ROOT ?>User/ShowDetailView">My info</a>
+               <a class="nav-link" href="<?php // echo FRONT_ROOT ?>User/ShowDetailView">My info</a>
           </li>
+
+          -->
+
+          <li class="nav-item dropdown">
+               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Companies</a>
+               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="<?php echo FRONT_ROOT ?>Company/ShowListView">List Companies</a>
+                    <a class="dropdown-item" href="<?php echo FRONT_ROOT ?>Company/ShowListView">List Proposals</a>
+               </div>
+          </li>      
+
+          <?php if(isset($_SESSION['loggedAdmin'])){ ?>
+               <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                         <a class="dropdown-item" href="<?php echo FRONT_ROOT ?>Company/ShowAddView">Add Company</a>
+                         <a class="dropdown-item" href="<?php echo FRONT_ROOT ?>Company/ShowListView">ABM Usuarios ???</a>
+                         <a class="dropdown-item" href="<?php echo FRONT_ROOT ?>Company/ShowListView">ABM Companies</a>
+                         <a class="dropdown-item" href="<?php echo FRONT_ROOT ?>Company/ShowListView">ABM Propuestas</a>
+                         <a class="dropdown-item" href="<?php echo FRONT_ROOT ?>Company/ShowListView">Alumnos Postulados</a>
+                    </div>
+               </li>          
+          <?php }?>
+          
+          <li class="nav-item dropdown">
+               <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">My Profile</a>
+               <div class="dropdown-menu">
+                    <a class="dropdown-item" href="<?php echo FRONT_ROOT ?>User/ShowDetailView">My Info</a>
+                    <a class="dropdown-item" href="<?php echo FRONT_ROOT ?>Company/ShowListView">My Proposals</a>
+                    
+               </div>
+          </li>
+
+
+
           <li class="nav-item">
                <a class="nav-link" href="<?php echo FRONT_ROOT ?>Home/Logout">Logout</a>
           </li>  

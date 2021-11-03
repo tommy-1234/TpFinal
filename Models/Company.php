@@ -9,7 +9,7 @@
         private $companyPhone;
         private $companyLinkedin;
         private $companyAddress;
-            
+        private $companyLink;
 
         public function getIdCompany(){ return $this->idCompany; }
         public function setIdCompany($idCompany) { $this->idCompany = $idCompany; }
@@ -31,6 +31,9 @@
 
         public function getCompanyAddress(){ return $this->companyAddress; }
         public function setCompanyAddress($companyAddress) { $this->companyAddress = $companyAddress; }
+
+        public function getCompanyLink(){ return $this->companyLink; }
+        public function setCompanyLink($companyLink) { $this->companyLink = $companyLink; }
 
 
     }

@@ -34,6 +34,10 @@ require_once("nav.php");
                   <td style="font-weight:bold;">Address</td>
                   <td><?php echo $company->getCompanyAddress();?></td>
                 </tr>
+                <tr>
+                  <td style="font-weight:bold;">Link</td>
+                  <td><?php echo $company->getCompanyLink();?></td>
+                </tr>
          </tbody>
         </table>
 

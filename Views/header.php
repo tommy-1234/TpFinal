@@ -10,6 +10,10 @@
      <link rel="stylesheet" type="text/css" href="<?php echo CSS_PATH ?>estilos.css">
      <link rel="stylesheet" href="<?php echo CSS_PATH ?>signin.css">
 
-     <title>Framework Example</title>
+     <script src="<?php echo JS_PATH ?>jquery.min.js"></script>
+     <script src="<?php echo JS_PATH ?>popper.min.js"></script>
+     <script src="<?php echo JS_PATH ?>bootstrap.min.js"></script>
+
+     <title>Rekluting</title>
 </head>
 <body>

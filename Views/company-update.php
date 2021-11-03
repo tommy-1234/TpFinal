@@ -11,6 +11,7 @@ require_once('nav.php');
                 <th>Company phone</th>
                 <th>Company Linkedin</th>
                 <th>Company Address</th>
+                <th>Company Link</th>
                 <th></th>
             </tr>
         </thead>
@@ -21,9 +22,10 @@ require_once('nav.php');
             <td><input type="number" name="companyPhone" id="Number"></td>
             <td><input type="text" name="companyLinkedin" id="Linkedin"></td>
             <td><input type="text" name="companyAddress" id="Address"></td>
+            <td><input type="text" name="companyLink" id="Link"></td>
         </tbody>
     </table>
-    <input type="submit" value="Modificar">
+    <input type="submit" value="Modify">
 </form>
 <script>
     var companyName = "<?php echo $company->getCompanyName()?>";
@@ -38,4 +40,6 @@ require_once('nav.php');
     document.getElementById("Linkedin").value = companyDesc;
     var companyDesc = "<?php echo $company->getCompanyAddress()?>";
     document.getElementById("Address").value = companyDesc;
+    var companyDesc = "<?php echo $company->getCompanyLink()?>";
+    document.getElementById("Link").value = companyDesc;
 </script>

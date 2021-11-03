@@ -43,5 +43,14 @@
         "companyPhone": "12345688",
         "companyLinkedin": "GOOGLE",
         "companyAddres": "google str 8"
+    },
+    {
+        "idCompany": 8,
+        "companyName": "Starbucks",
+        "CompanyDescription": "Es una empresa de cafe, nada que ver con informatica, capaz quieren un cafe con RGB",
+        "companyEmail": "Star@bucks.com",
+        "companyPhone": "12345678",
+        "companyLinkedin": "\/starBucks",
+        "companyAddres": "Lamadrid 2400"
     }
 ]

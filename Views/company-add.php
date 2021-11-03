@@ -15,6 +15,8 @@ if(isset($_SESSION['alert'])){
                 <th>Company phone</th>
                 <th>Company Linkedin</th>
                 <th>Company Address</th>
+                <th>Company Link</th>
+                
                 <th></th>
             </tr>
         </thead>
@@ -25,6 +27,7 @@ if(isset($_SESSION['alert'])){
             <td><input type="number" name="companyPhone" required></td>
             <td><input type="text" name="companyLinkedin" required></td>
             <td><input type="text" name="companyAddress" required></td>
+            <td><input type="text" name="companyLink" required></td>
         </tbody>
     </table>
     <!--<input type="submit" value="ADD"> -->
