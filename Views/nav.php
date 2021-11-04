@@ -30,11 +30,10 @@
                <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin</a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                         <a class="dropdown-item" href="<?php echo FRONT_ROOT ?>Company/ShowAddView">Add Company</a>
-                         <a class="dropdown-item" href="<?php echo FRONT_ROOT ?>Company/ShowListView">ABM Usuarios ???</a>
+                         <a class="dropdown-item" href="<?php echo FRONT_ROOT ?>Company/ShowListView">Student List</a>
+                         <a class="dropdown-item" href="<?php echo FRONT_ROOT ?>Company/ShowListView">Student Requests</a>
                          <a class="dropdown-item" href="<?php echo FRONT_ROOT ?>Company/ShowListView">ABM Companies</a>
-                         <a class="dropdown-item" href="<?php echo FRONT_ROOT ?>Company/ShowListView">ABM Propuestas</a>
-                         <a class="dropdown-item" href="<?php echo FRONT_ROOT ?>Company/ShowListView">Alumnos Postulados</a>
+                         <a class="dropdown-item" href="<?php echo FRONT_ROOT ?>JobOffer/ShowListView">ABM Job Offers</a>
                     </div>
                </li>          
           <?php }?>
