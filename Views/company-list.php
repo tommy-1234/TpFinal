@@ -26,7 +26,11 @@ if(isset($_SESSION['alert'])){
             <tr>
               <th style ="width: 20%;">Company Name</th>
               <th style="width: 50%;">Company Description</th>
-              <th style="width: 10%;"></th>
+              <th style="width: 10%;">
+                <?php if(isset($_SESSION['loggedAdmin'])){ ?>
+                  <button type="submit" name="" class="btn" value="" formaction="<?php echo FRONT_ROOT."Company/ShowAddView" ?>" > New Company</button>
+                <?php } ?>
+              </th> 
             </tr>
           </thead>
           <tbody>     
