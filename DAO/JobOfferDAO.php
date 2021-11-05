@@ -15,6 +15,31 @@ class JobOfferDAO implements IJobOfferDAO{
     private $connection;
 
 
+    function Add($jobOffer){ 
+  
+        try{
+
+            $query = "INSERT INTO ".$this->tableName."(companyId, jobPositionId, publicationDate, expirationDate, isRemote, projectDescription, hourlyLoad, jobOfferActive) VALUES (:companyId, :jobPositionId, :publicationDate, :expirationDate, :isRemote, :projectDescription, :hourlyLoad, :jobOfferActive) ";
+            
+            $parameters["companyId"] = $jobOffer->getCompany()->getIdCompany();
+            $parameters["jobPositionId"] = $jobOffer->getJobPosition()->getJobPositionId();
+            $parameters["publicationDate"] = $jobOffer->getPublicationDate();
+            $parameters["expirationDate"] = $jobOffer->getExpirationDate();
+            $parameters["isRemote"] = $jobOffer->getIsRemote();
+            $parameters["projectDescription"] = $jobOffer->getProjectDescription();
+            $parameters["hourlyLoad"] = $jobOffer->getHourlyLoad();
+            $parameters["jobOfferActive"] = $jobOffer->getActive();
+            
+            $this->connection = Connection::GetInstance();
+            $this->connection->ExecuteNonQuery($query, $parameters);
+
+        }catch(Exception $ex){
+
+            throw $ex;
+
+        }
+    }
+
     function GetAll(){
 
         try{

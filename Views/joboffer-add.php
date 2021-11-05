@@ -4,24 +4,101 @@ if(isset($_SESSION['alert'])){
     $alert = $_SESSION['alert'];
 }
 ?>
-<form action="<?php echo FRONT_ROOT."JobOffer/Add"?>" method="post">
-    <br>
-    <select class="form-control" id="company" name="idCompany">
-        <?php foreach($companyList as $company){?>
-            <option value=<?php echo $company->getIdCompany();?>><?php echo $company->getCompanyName();?></option>
-        <?php } ?>
-    </select>
-    <br>
+
+<div class="wrapper row4">
+  <main class="hoc container clear"> 
+    <!-- main body -->
+    <div class="content"> 
+      <div class="scrollable">
 
 
-    <!--<input type="submit" value="ADD"> -->
-    <br>
-    <button type="submit" class="btn" >Add</button>
-    <!--<button type="submit" name="" class="btn" value="" formaction="<?php echo FRONT_ROOT."Company/ShowListView" ?>" > Back </button> -->
-    <div style="display: inline-block; margin:auto" class="alert alert-<?php echo $alert->getType()?>" role="alert">
-        <?php echo $alert->getMessage(); ?>
+        <form action="<?php echo FRONT_ROOT."JobOffer/Add"?>" method="post">
+        
+        <table style="text-align:left;" class="table table-bordered">
+          <tbody>  
+                <tr>
+                    <td style="font-weight:bold;" >Company</td>
+                    <td >
+                    <select class="form-control" id="company" name="idCompany">
+                    <?php foreach($companyList as $company){?>
+                        <option value=<?php echo $company->getIdCompany();?>><?php echo $company->getCompanyName();?></option>
+                    <?php } ?>
+                    </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="font-weight:bold;" >Job Position</td>
+                    <td >
+                    <select class="form-control" id="jobposition" name="jobPositionId">
+                        <?php foreach($JobPositionList as $JobPosition){?>
+                            <option value=<?php echo $JobPosition->getJobPositionId();?>><?php echo $JobPosition->getDescription()." - ".$JobPosition->getCareer()->getDescription();?></option>
+                        <?php } ?>
+                    </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="font-weight:bold;" >Publication Date</td>
+                    <td><input type="date" id="publicationDate" name="publicationDate" required></td>
+                </tr>
+
+                <tr>
+                    <td style="font-weight:bold;" >Expiration Date</td>
+                    <td><input type="date" id="expirationDate" name="expirationDate" required></td>
+                </tr>
+                
+                <tr>
+                    <td style="font-weight:bold;" >Is Remote</td>
+                    <td>
+                        <input type="radio" id="yes" value="1" name="isRemote" required>
+                        <label for="yes">Yes </label>
+                        <input type="radio" id="no" value="0" name="isRemote" required>
+                        <label for="no">No</label>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="font-weight:bold;" >Project Description</td>
+                    <td><textarea name="projectDescription" id="text" cols="60" rows="4"></textarea></td>
+                </tr>
+
+                <tr>
+                    <td style="font-weight:bold;" >Hourly Load</td>
+                    <td><input type="number" id="hourlyLoad" name="hourlyLoad" required></td>
+                </tr>
+                
+                <tr>
+                    <td style="font-weight:bold;" >Active</td>
+                    <td>
+                        <input type="radio" id="yes" value="1" name="jobOfferActive" required>
+                        <label for="yes">Yes </label>
+                        <input type="radio" id="no" value="0" name="jobOfferActive" required>
+                        <label for="no">No</label>
+                    </td>
+                </tr>
+
+
+            <br>
+            <br>
+            <!--<input type="submit" value="ADD"> -->
+            <br>
+            </table>
+            <button type="submit" class="btn" >Add</button>
+            <!--<button type="submit" name="" class="btn" value="" formaction="<?php echo FRONT_ROOT."Company/ShowListView" ?>" > Back </button> -->
+            <div style="display: inline-block; margin:auto" class="alert alert-<?php echo $alert->getType()?>" role="alert">
+                <?php echo $alert->getMessage(); ?>
+            </div>
+        </form>
+
+
+        </div>
     </div>
-</form>
+    <!-- / main body -->
+    <div class="clear"></div>
+  </main>
+</div>
+
 <?
 $_SESSION['alert'] = null;
 ?>

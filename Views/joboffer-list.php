@@ -18,9 +18,9 @@ if(isset($_SESSION['alert'])){
         <table style="text-align:center;" class="table table-bordered">
           <thead class="thead-dark">
             <tr>
+              <th style ="width: 25%;">Company Name</th>  
               <th style ="width: 25%;">Career</th>
               <th style ="width: 25%;">Job Position</th>
-              <th style ="width: 25%;">Company Name</th>
               <th style ="width: 15%;">Hourly Load</th>
               <th style ="width: 10%;">
               <?php if(isset($_SESSION['loggedAdmin'])){ ?>
@@ -32,9 +32,9 @@ if(isset($_SESSION['alert'])){
           <tbody>     
                 <?php foreach($JobOfferList as $JobOffer){?>
                   <tr>
+                    <td><?php echo $JobOffer->getCompany()->getCompanyName();?></td>  
                     <td><?php echo $JobOffer->getJobPosition()->getCareer()->getDescription();?></td>
                     <td><?php echo $JobOffer->getJobPosition()->getDescription();?></td>
-                    <td><?php echo $JobOffer->getCompany()->getCompanyName();?></td>
                     <td><?php echo $JobOffer->getHourlyLoad();?></td>
                     
                     <td>
