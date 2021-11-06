@@ -12,21 +12,31 @@ if(isset($_SESSION['alert'])){
     <div class="content"> 
       <div class="scrollable">
 
+      <br>
+      <form action="<?php echo FRONT_ROOT."JobOffer/Filter"?>" method="post">
+        <input type="text" name="filterCareer" placeholder="Career">
+        <input type="text" name="filterJobPosition" placeholder="Job Position">
+        <input type="submit" value="Filter">
+      </form>
+
       
-      <form action="<?php echo FRONT_ROOT."JobOffer/ShowDetail"?>" method="post">
+      <form >
       <br>
         <table style="text-align:center;" class="table table-bordered">
           <thead class="thead-dark">
             <tr>
-              <th style ="width: 25%;">Company Name</th>  
+              <th style ="width: 20%;">Company Name</th>  
               <th style ="width: 25%;">Career</th>
-              <th style ="width: 25%;">Job Position</th>
+              <th style ="width: 20%;">Job Position</th>
               <th style ="width: 15%;">Hourly Load</th>
               <th style ="width: 10%;">
               <?php if(isset($_SESSION['loggedAdmin'])){ ?>
                   <button type="submit" name="" class="btn" value="" formaction="<?php echo FRONT_ROOT."JobOffer/ShowAddView" ?>" >New Job Offer</button>
-                <?php } ?>
+              <?php } ?>
               </th> 
+              <?php if(!isset($_SESSION['loggedAdmin'])){ ?>
+              <th style ="width: 10%;"></th>
+              <?php } ?>
             </tr>
           </thead>
           <tbody>     
@@ -38,8 +48,14 @@ if(isset($_SESSION['alert'])){
                     <td><?php echo $JobOffer->getHourlyLoad();?></td>
                     
                     <td>
-                      <button type="submit" class="btn" name="jobOfferId" value="<?php echo $JobOffer->getJobOfferId() ?>"> More Details </button>
+                      <button type="submit" class="btn" name="jobOfferId" value="<?php echo $JobOffer->getJobOfferId()?> "formaction="<?php echo FRONT_ROOT."JobOffer/ShowDetail"?>" method="post"> More Details </button>
                     </td>
+
+                    <?php if(!isset($_SESSION['loggedAdmin'])){ ?>
+                    <td>
+                      <button type="submit" class="btn" name="jobOfferId" value="<?php echo $JobOffer->getJobOfferId()?> "formaction="<?php echo FRONT_ROOT."JobRequest/Add"?>" method="post"> Postulate </button>
+                    </td>
+                    <?php } ?>
                    
                   </tr>
                 <?php } ?>

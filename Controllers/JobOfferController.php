@@ -36,7 +36,7 @@ class JobOfferController {
 
     public function ShowDetail($jobOfferId){
         require_once(VIEWS_PATH."validate-session.php");
-    //  $JobOffer = $this->JobOfferDAO->GetById($jobOfferId);
+        $JobOffer = $this->JobOfferDAO->GetById($jobOfferId);
         require_once(VIEWS_PATH."joboffer-detail.php");
     }
 
@@ -45,6 +45,15 @@ class JobOfferController {
         $companyList = $this->companyDAO->GetAll();
         $JobPositionList = $this->JobPositionDAO->GetAll();
         require_once(VIEWS_PATH."joboffer-add.php");
+    }
+
+    public function ShowUpdate($jobOfferId){
+        require_once(VIEWS_PATH."validate-session.php");
+        $companyList = $this->companyDAO->GetAll();
+        $JobPositionList = $this->JobPositionDAO->GetAll();
+        $JobOffer = $this->JobOfferDAO->GetById($jobOfferId);
+        $_SESSION['jobOfferId'] = $JobOffer->getJobOfferId();       // Lo guardo porque el formulario de joboffer-update no me lo devuelve
+        require_once(VIEWS_PATH."joboffer-update.php");
     }
 
     public function Add($idCompany, $jobPositionId, $publicationDate, $expirationDate, $isRemote, $projectDescription, $hourlyLoad, $jobOfferActive){
@@ -83,6 +92,66 @@ class JobOfferController {
         }
 
     }
+
+    public function Remove($jobOfferId){
+
+        $alert = new Alert("", "");
+
+        try{
+            $this->JobOfferDAO->Remove($jobOfferId);
+
+            $alert->setType ('success');
+            $alert->setMessage('Job Offer removed successfully.'); 
+        } catch (Exception $ex){
+            $alert->setType ('danger');
+            $alert->setMessage('Failed to removed the Job Offer. Try again.'); 
+        } finally{
+            $_SESSION['alert'] = $alert;
+             $this->ShowListView();
+        }
+    }
+
+    public function Update($idCompany, $jobPositionId, $publicationDate, $expirationDate, $isRemote, $projectDescription, $hourlyLoad, $jobOfferActive){
+
+        try{
+
+            $alert = new Alert("", "");
+
+            $jobOfferId =  $_SESSION['jobOfferId'];     //Lo recupero porque el formulario de joboffer-update no me lo devuelve
+
+            $jobOffer = new JobOffer();
+            $company = new Company();
+            $jobPosition = new JobPosition();
+
+            $jobPosition->setJobPositionId($jobPositionId);
+
+            $company->setIdCompany($idCompany);
+
+            $jobOffer->setCompany($company);
+            $jobOffer->setJobPosition($jobPosition);            
+            $jobOffer->setPublicationDate($publicationDate);
+            $jobOffer->setExpirationDate($expirationDate);
+            $jobOffer->setIsRemote($isRemote);
+            $jobOffer->setProjectDescription($projectDescription);
+            $jobOffer->setHourlyLoad($hourlyLoad);
+            $jobOffer->setActive($jobOfferActive);
+
+            $this->JobOfferDAO->Update($jobOfferId, $jobOffer);
+
+            $alert->setType ('success');
+            $alert->setMessage('Job offer updated successfully.');
+
+        } catch (Exception $ex){
+            $alert->setType ('danger');
+            $alert->setMessage('Failed to update the job offer. Try again.');
+        }finally{
+            $_SESSION['alert'] = $alert;
+            $this->ShowListView();   
+        }
+
+    }
+
+
 
 }
 

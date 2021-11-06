@@ -8,6 +8,9 @@ use Models\JobOffer as JobOffer;
     {
         function Add(JobOffer $jobOffer);
         function GetAll();
+        function GetById($jobOfferId);
+        function Remove($jobOfferId);
+        function Update($jobOfferId, $JobOffer);
     }
 
 
