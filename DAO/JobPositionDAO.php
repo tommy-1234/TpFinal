@@ -4,6 +4,7 @@ namespace DAO;
 
 use DAO\Connection as Connection;
 use DAO\IJobPositionDAO as IJobPositionDAO;
+use Exception;
 use Models\JobPosition as JobPosition;
 use Models\Career as Career;
 

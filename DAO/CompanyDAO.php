@@ -4,6 +4,7 @@ namespace DAO;
 
 use DAO\Connection as Connection;
 use DAO\ICompanyDAO as ICompanyDAO;
+use Exception;
 use Models\Company as Company;
 
     class CompanyDAO implements ICompanyDAO
