@@ -81,11 +81,11 @@ class JobOfferController {
             $this->JobOfferDAO->Add($jobOffer);
 
             $alert->setType ('success');
-            $alert->setMessage('Company added successfully.');
+            $alert->setMessage('Job Offer added successfully.');
 
         } catch (Exception $ex){
             $alert->setType ('danger');
-            $alert->setMessage('Failed to add the company. Try again.');
+            $alert->setMessage('Failed to add the job offer. Try again.');
         }finally{
             $_SESSION['alert'] = $alert;
             $this->ShowAddView();   
