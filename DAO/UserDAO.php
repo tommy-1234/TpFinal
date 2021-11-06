@@ -29,7 +29,7 @@ namespace DAO;
 
             $user = array_shift($users);
 
-            if($users == null){
+            if($user == null){
                 $this->RetrieveData();
 
                 $users = array_filter($this->userList, function($user) use($userEmail){
