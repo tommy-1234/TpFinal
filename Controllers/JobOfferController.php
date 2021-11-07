@@ -151,7 +151,18 @@ class JobOfferController {
 
     }
 
+    function Filter($filterCareer=null, $filterJobPosition=null){
 
+        if($filterCareer != "null" && $filterJobPosition != "null"){
+            $JobOfferList = $this->JobOfferDAO->FilterTwo($filterCareer, $filterJobPosition);
+        }else if($filterCareer != "null"){
+            $JobOfferList = $this->JobOfferDAO->FilterOne($filterCareer);
+        }else {
+            $JobOfferList = $this->JobOfferDAO->FilterOne($filterJobPosition);
+        }
+
+        require_once(VIEWS_PATH."joboffer-list.php");
+    }
 
 }
 

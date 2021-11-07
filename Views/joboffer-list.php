@@ -14,8 +14,8 @@ if(isset($_SESSION['alert'])){
 
       <br>
       <form action="<?php echo FRONT_ROOT."JobOffer/Filter"?>" method="post">
-        <input type="text" name="filterCareer" placeholder="Career">
-        <input type="text" name="filterJobPosition" placeholder="Job Position">
+        <input type="text" name="filterCareer" placeholder="Career" >
+        <input type="text" name="filterJobPosition" placeholder="Job Position" >
         <input type="submit" value="Filter">
       </form>
 
