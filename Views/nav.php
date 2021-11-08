@@ -31,7 +31,7 @@
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin</a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                          <a class="dropdown-item" href="<?php echo FRONT_ROOT ?>User/ShowListView">Student List</a>
-                         <a class="dropdown-item" href="<?php echo FRONT_ROOT ?>Company/ShowListView">Student Requests</a>
+                         <a class="dropdown-item" href="<?php echo FRONT_ROOT ?>JobRequest/ShowListView">Student Requests</a>
                          <a class="dropdown-item" href="<?php echo FRONT_ROOT ?>Company/ShowListView">ABM Companies</a>
                          <a class="dropdown-item" href="<?php echo FRONT_ROOT ?>JobOffer/ShowListView">ABM Job Offers</a>
                     </div>

@@ -22,6 +22,20 @@ class JobRequestController {
         require_once(VIEWS_PATH."home.php");
     }
 
+    function ShowListView(){
+        require_once(VIEWS_PATH."validate-session.php");
+        try{
+            $alert = new Alert("", "");
+            $jobRequestList = $this->JobRequestsDAO->GetAll();
+        }catch(Exception $ex){
+            $alert->setType ('danger');
+            $alert->setMessage('Failed to load. Try later.');
+        }finally{
+            $_SESSION['alert'] = $alert;
+            require_once(VIEWS_PATH."jobRequest-list.php");
+        }
+    }
+
     function Add($jobOfferId){
 
         try{
