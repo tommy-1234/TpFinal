@@ -30,7 +30,7 @@ class JobOfferController {
 
     public function ShowListView(){
         require_once(VIEWS_PATH."validate-session.php");
-        $JobOfferList = $this->JobOfferDAO->GetAll();
+        $JobOfferList = $this->JobOfferDAO->GetAll( isset($_SESSION['loggedAdmin']) );
         require_once(VIEWS_PATH."joboffer-list.php");
     }
 
@@ -154,11 +154,11 @@ class JobOfferController {
     function Filter($filterCareer=null, $filterJobPosition=null){
 
         if($filterCareer != "null" && $filterJobPosition != "null"){
-            $JobOfferList = $this->JobOfferDAO->FilterTwo($filterCareer, $filterJobPosition);
+            $JobOfferList = $this->JobOfferDAO->FilterTwo($filterCareer, $filterJobPosition, isset($_SESSION['loggedAdmin']));
         }else if($filterCareer != "null"){
-            $JobOfferList = $this->JobOfferDAO->FilterOne($filterCareer);
+            $JobOfferList = $this->JobOfferDAO->FilterOne($filterCareer, isset($_SESSION['loggedAdmin']));
         }else {
-            $JobOfferList = $this->JobOfferDAO->FilterOne($filterJobPosition);
+            $JobOfferList = $this->JobOfferDAO->FilterOne($filterJobPosition, isset($_SESSION['loggedAdmin']));
         }
 
         require_once(VIEWS_PATH."joboffer-list.php");

@@ -41,13 +41,18 @@ class JobOfferDAO implements IJobOfferDAO{
         }
     }
 
-    function GetAll(){
+    function GetAll($isAdmin){
 
         try{
 
             $JobOfferList = array();
 
-            $query = "SELECT * FROM ".$this->tableName." inner join companies on joboffer.companyId = companies.companyId inner join jobposition on joboffer.jobPositionId = jobposition.jobPositionId inner join career on jobposition.careerId = career.careerId;";
+            $query = "SELECT * FROM ".$this->tableName." inner join companies on joboffer.companyId = companies.companyId inner join jobposition on joboffer.jobPositionId = jobposition.jobPositionId inner join career on jobposition.careerId = career.careerId";
+
+            // para los usuarios comunes no se muestran los Job Offer inactivas o fuera de fecha
+            if(!$isAdmin){
+                $query = $query." where jobOfferActive=1 and curdate() BETWEEN publicationDate AND expirationDate and careerActive=1;";
+            }
             
             $this->connection = Connection::GetInstance();
             $resultSet = $this->connection->Execute($query);
@@ -193,13 +198,18 @@ class JobOfferDAO implements IJobOfferDAO{
     }
 
 
-    function FilterOne($filter){
+    function FilterOne($filter, $isAdmin){
         
         try{
 
             $jobOfferList = array();
 
             $query = "SELECT * FROM ".$this->tableName. '  inner join companies on joboffer.companyId = companies.companyId inner join jobposition on joboffer.jobPositionId = jobposition.jobPositionId inner join career on jobposition.careerId = career.careerId  WHERE career.careerDescription LIKE "%'.$filter.'%"'; 
+
+            // para los usuarios comunes no se muestran los Job Offer inactivas o fuera de fecha
+            if(!$isAdmin){
+                $query = $query." and jobOfferActive=1 and curdate() BETWEEN publicationDate AND expirationDate and careerActive=1;";
+            }
 
             $this->connection = Connection::GetInstance();
             $resultSet = $this->connection->Execute($query); 
@@ -242,12 +252,17 @@ class JobOfferDAO implements IJobOfferDAO{
         }
     }
 
-    function FilterTwo($filterCareer, $filterJobPosition){
+    function FilterTwo($filterCareer, $filterJobPosition, $isAdmin){
         try{
 
             $jobOfferList = array();
 
             $query = "SELECT * FROM ".$this->tableName. '  inner join companies on joboffer.companyId = companies.companyId inner join jobposition on joboffer.jobPositionId = jobposition.jobPositionId inner join career on jobposition.careerId = career.careerId  WHERE career.careerDescription LIKE "%'.$filterCareer.'%" AND jobposition.jobPositionDescription LIKE "%'.$filterJobPosition.'%"'; 
+
+            // para los usuarios comunes no se muestran los Job Offer inactivas o fuera de fecha
+            if(!$isAdmin){
+                $query = $query." and jobOfferActive=1 and curdate() BETWEEN publicationDate AND expirationDate and careerActive=1;";
+            }
 
             $this->connection = Connection::GetInstance();
             $resultSet = $this->connection->Execute($query); 

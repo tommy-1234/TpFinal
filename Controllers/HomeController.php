@@ -29,12 +29,12 @@
                 $_SESSION["loggedUser"] = $user;
                 $_SESSION['loggedAdmin'] = "Admin";
                 
-                header("location:".FRONT_ROOT."Company/ShowListView");
+                header("location:".FRONT_ROOT."JobOffer/ShowListView");
             }
             else if($user != null){
                 $_SESSION["loggedUser"] = $user;
 
-                header("location:".FRONT_ROOT."Company/ShowListView");
+                header("location:".FRONT_ROOT."JobOffer/ShowListView");
             }else
                 $this->Index("Usuario y/o Contraseña incorrectos");
         }
