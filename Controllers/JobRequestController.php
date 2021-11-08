@@ -86,5 +86,20 @@ class JobRequestController {
         }
         return $state;
     }
+
+    function Proposals(){
+        require_once(VIEWS_PATH."validate-session.php");
+        try{
+            $alert = new Alert("", "");
+            $student = $_SESSION["loggedUser"];
+            $jobRequestList = $this->JobRequestsDAO->SearchByStudenId($student->getStudentId());
+        }catch(Exception $ex){
+            $alert->setType ('danger');
+            $alert->setMessage('Failed to load. Try later.');
+        }finally{
+            $_SESSION['alert'] = $alert;
+            require_once(VIEWS_PATH."proposals-list.php");
+        }
+    }
 }
 ?>

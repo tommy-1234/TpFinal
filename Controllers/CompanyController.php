@@ -35,6 +35,12 @@ class CompanyController {
         try{
 
             $alert = new Alert("", "");
+            $checkName = $this->companyDAO->GetAll();
+            foreach($checkName as $name){
+                if(strcasecmp($name->getCompanyName(), $companyName) == 0){
+                    throw new Exception();
+                }
+            }
             $company = new Company();
             $company->setCompanyName($companyName);
             $company->setCompanyDescription($companyDescription);
