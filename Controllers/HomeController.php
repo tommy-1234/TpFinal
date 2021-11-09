@@ -32,11 +32,15 @@
                 header("location:".FRONT_ROOT."JobOffer/ShowListView");
             }
             else if($user != null){
-                $_SESSION["loggedUser"] = $user;
-
-                header("location:".FRONT_ROOT."JobOffer/ShowListView");
+                // verifico si el usuario esta activo
+                if($user->getActive()){
+                    $_SESSION["loggedUser"] = $user;
+                    header("location:".FRONT_ROOT."JobOffer/ShowListView");
+                }else{
+                    $this->Index('Inactive user, please contact with the UTN.');
+                }
             }else
-                $this->Index("Usuario y/o Contraseña incorrectos");
+                $this->Index("Incorrect username");
         }
         
         public function Logout()

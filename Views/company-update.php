@@ -1,32 +1,65 @@
 <?php
 require_once('nav.php');
 ?>
-<form action="<?php echo FRONT_ROOT."Company/Update"?>" method="post">
-    <table>
-        <thead>
-            <tr>
-                <th>Company Name</th>
-                <th>Company Description</th>
-                <th>Company Email</th>
-                <th>Company phone</th>
-                <th>Company Linkedin</th>
-                <th>Company Address</th>
-                <th>Company Link</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody align="center">
-            <td><input type="text" name="companyName" id="Name"></td>
-            <td><input type="textarea" name="companyDescription" id="Desc"></td>
-            <td><input type="email" name="companyEmail" id="Email"></td>
-            <td><input type="number" name="companyPhone" id="Number"></td>
-            <td><input type="text" name="companyLinkedin" id="Linkedin"></td>
-            <td><input type="text" name="companyAddress" id="Address"></td>
-            <td><input type="text" name="companyLink" id="Link"></td>
-        </tbody>
-    </table>
-    <input type="submit" value="Modify">
-</form>
+
+<div class="wrapper row4">
+  <main class="hoc container clear"> 
+    <!-- main body -->
+    <div class="content"> 
+      <div class="scrollable">
+
+      <form action="<?php echo FRONT_ROOT."Company/Update"?>" method="post">
+        <br>
+        <table style="text-align:left;" class="table table-bordered">
+          <tbody>  
+                <tr>
+                  <td style="font-weight:bold;" >Name</td>
+                  <td><input type="text" name="companyName" id="Name"></td>
+                </tr>
+                <tr>
+                  <td style="font-weight:bold;" >Description</td>
+                  <td><input type="textarea" name="companyDescription" id="Desc" size="80"></td>
+                </tr>
+                <tr>
+                  <td style="font-weight:bold;">Email</td>
+                  <td><input type="email" name="companyEmail" id="Email"></td>
+                </tr>
+                <tr>
+                  <td style="font-weight:bold;">Phone</td>
+                  <td><input type="number" name="companyPhone" id="Number"></td>
+               </tr>
+                <tr>
+                  <td style="font-weight:bold;">Linkedin</td>
+                  <td><input type="text" name="companyLinkedin" id="Linkedin"></td>
+                </tr>
+                <tr>
+                  <td style="font-weight:bold;">Address</td>
+                  <td><input type="text" name="companyAddress" id="Address"></td>
+                </tr>
+                <tr>
+                  <td style="font-weight:bold;">Link</td>
+                  <td><input type="text" name="companyLink" id="Link"></td>
+                </tr>
+         </tbody>
+        </table>
+
+        <table>
+            <tbody>
+                <td>
+                    <input type="submit" value="Modify">
+                </td> 
+           </tbody>
+        </table>
+
+      </form> 
+      </div>
+    </div>
+    <!-- / main body -->
+    <div class="clear"></div>
+  </main>
+</div>
+
+
 <script>
     var companyName = "<?php echo $company->getCompanyName()?>";
     document.getElementById("Name").value = companyName;

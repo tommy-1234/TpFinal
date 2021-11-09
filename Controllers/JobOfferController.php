@@ -57,38 +57,57 @@ class JobOfferController {
     }
 
     public function Add($idCompany, $jobPositionId, $publicationDate, $expirationDate, $isRemote, $projectDescription, $hourlyLoad, $jobOfferActive){
-
-        try{
-
-            $alert = new Alert("", "");
-            $jobOffer = new JobOffer();
-            $company = new Company();
-            $jobPosition = new JobPosition();
-
-            $jobPosition->setJobPositionId($jobPositionId);
-
-            $company->setIdCompany($idCompany);
-
-            $jobOffer->setCompany($company);
-            $jobOffer->setJobPosition($jobPosition);            
-            $jobOffer->setPublicationDate($publicationDate);
-            $jobOffer->setExpirationDate($expirationDate);
-            $jobOffer->setIsRemote($isRemote);
-            $jobOffer->setProjectDescription($projectDescription);
-            $jobOffer->setHourlyLoad($hourlyLoad);
-            $jobOffer->setActive($jobOfferActive);
-
-            $this->JobOfferDAO->Add($jobOffer);
-
-            $alert->setType ('success');
-            $alert->setMessage('Job Offer added successfully.');
-
-        } catch (Exception $ex){
+        
+        $alert = new Alert("", "");
+        
+            
+        if($publicationDate >= $expirationDate){
             $alert->setType ('danger');
-            $alert->setMessage('Failed to add the job offer. Try again.');
-        }finally{
+            $alert->setMessage('The expiration date must be greater than the publication date. Try again.');
+
             $_SESSION['alert'] = $alert;
-            $this->ShowAddView();   
+            $this->ShowAddView();  
+            
+        }elseif($hourlyLoad > 24){
+            $alert->setType ('danger');
+            $alert->setMessage('The hourly load cannot be more than 24 hours. Try again.');
+
+            $_SESSION['alert'] = $alert;
+            $this->ShowAddView(); 
+            
+        }else{
+
+            try{
+
+                $jobOffer = new JobOffer();
+                $company = new Company();
+                $jobPosition = new JobPosition();
+
+                $jobPosition->setJobPositionId($jobPositionId);
+
+                $company->setIdCompany($idCompany);
+
+                $jobOffer->setCompany($company);
+                $jobOffer->setJobPosition($jobPosition);            
+                $jobOffer->setPublicationDate($publicationDate);
+                $jobOffer->setExpirationDate($expirationDate);
+                $jobOffer->setIsRemote($isRemote);
+                $jobOffer->setProjectDescription($projectDescription);
+                $jobOffer->setHourlyLoad($hourlyLoad);
+                $jobOffer->setActive($jobOfferActive);
+
+                $this->JobOfferDAO->Add($jobOffer);
+
+                $alert->setType ('success');
+                $alert->setMessage('Job Offer added successfully.');
+
+            } catch (Exception $ex){
+                $alert->setType ('danger');
+                $alert->setMessage('Failed to add the job offer. Try again.');
+            }finally{
+                $_SESSION['alert'] = $alert;
+                $this->ShowAddView();   
+            }
         }
 
     }

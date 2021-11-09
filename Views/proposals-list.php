@@ -11,6 +11,7 @@ if(isset($_SESSION['alert'])){
     <!-- main body -->
     <div class="content"> 
       <div class="scrollable">
+        <br>
         <table style="text-align:center;" class="table table-bordered">
           <thead class="thead-dark">
             <tr>

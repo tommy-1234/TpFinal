@@ -10,6 +10,11 @@
       <input type="email" id="inputEmail" name="userEmail" class="form-control" placeholder="Email address" required autofocus>
       <br>
       <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      <br>
+      <br>
+      <div style="display: inline-block; margin:auto">
+           <?php echo $message ?>
+      </div>
     </form>
 </div>
    

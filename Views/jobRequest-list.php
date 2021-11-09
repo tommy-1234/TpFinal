@@ -11,14 +11,7 @@ if(isset($_SESSION['alert'])){
     <div class="content"> 
       <div class="scrollable">
       
-     <!-- <br>
-      <form action="<?php //echo FRONT_ROOT."Company/Filter"?>" method="post">
-        <input type="text" name="filterCompany" placeholder="Company Name">
-        <input type="submit" value="Filter">
-      </form> 
- 
-      <form action="<?php //echo FRONT_ROOT."Company/Detaile"?>" method="post">
-      <br>-->
+        <br>
         <?php if(isset($_SESSION['loggedAdmin'])){ ?>
         <table style="text-align:center;" class="table table-bordered">
           <thead class="thead-dark">
@@ -44,9 +37,6 @@ if(isset($_SESSION['alert'])){
                     }else{
                         echo "❌";
                     }?></td>
-                    <!--<td>
-                      <button type="submit" class="btn" name="idCompany" value="<?php //echo $company->getIdCompany() ?>"> More Details </button>
-                    </td> -->
                   </tr>
                   <?php } ?>
           </tbody>
