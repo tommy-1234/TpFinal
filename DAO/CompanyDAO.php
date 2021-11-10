@@ -7,8 +7,7 @@ use DAO\ICompanyDAO as ICompanyDAO;
 use Exception;
 use Models\Company as Company;
 
-    class CompanyDAO implements ICompanyDAO
-    {
+    class CompanyDAO implements ICompanyDAO{
         private $companyList = array();
         private $tableName = "companies";
         private $connection;
@@ -73,6 +72,38 @@ use Models\Company as Company;
                 $this->connection = Connection::GetInstance();
                 $this->connection->ExecuteNonQuery($query, $parameters);
 
+            }catch(Exception $ex){
+
+                throw $ex;
+
+            }
+        }
+
+        function SearchEmail($CompanyEmail){   //Busca y devuelve una empresa mediante su email
+
+            try{
+
+                $query = "SELECT * FROM ".$this->tableName. " WHERE companyEmail = :companyEmail";
+                $parameters["companyEmail"] = $CompanyEmail;
+
+                $this->connection = Connection::GetInstance();
+                $resultSet = $this->connection->Execute($query, $parameters);
+
+                $row = $resultSet[0];
+
+                $company = new Company();
+
+                $company->setIdCompany($row["companyId"]);
+                $company->setCompanyName($row["companyName"]);
+                $company->setCompanyDescription($row["companyDescription"]);
+                $company->setCompanyEmail($row["companyEmail"]);
+                $company->setCompanyPhone($row["companyPhone"]);
+                $company->setCompanyLinkedin($row["companyLinkedin"]);
+                $company->setCompanyAddress($row["companyAddres"]);
+                $company->setCompanyLink($row["companyLink"]);
+
+                return $company;           
+                
             }catch(Exception $ex){
 
                 throw $ex;

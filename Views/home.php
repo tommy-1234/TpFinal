@@ -10,6 +10,8 @@
       <input type="email" id="inputEmail" name="userEmail" class="form-control" placeholder="Email address" required autofocus>
       <br>
       <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      <button class="btn btn-lg btn-primary btn-block" type="submit" formaction="<?php echo FRONT_ROOT."Company/ShowAddView" ?>">Register as student</button>  
+      <button class="btn btn-lg btn-primary btn-block" type="submit" formaction="<?php echo FRONT_ROOT."Company/ShowRegisterView" ?>">Register as company</button>
       <br>
       <br>
       <div style="display: inline-block; margin:auto">
@@ -17,4 +19,3 @@
       </div>
     </form>
 </div>
-   

@@ -2,17 +2,20 @@
 namespace Controllers;
 
 use DAO\CompanyDAO as CompanyDAO;
+use DAO\UserCompanyDAO as userCompanyDAO;
 use Exception;
 use Models\Company as Company;
 use Models\Alert as Alert;
+use Models\UserCompany as UserCompany;
 
 class CompanyController {
 
     private $companyDAO;
+    private $userCompanyDAO;
 
-    public function __construct()
-    {
+    public function __construct(){
         $this->companyDAO = new CompanyDAO();
+        $this->userCompanyDAO = new ;
     }
 
     public function Index(){
@@ -28,6 +31,39 @@ class CompanyController {
         require_once(VIEWS_PATH."validate-session.php");
         $companyList = $this->companyDAO->GetAll();
         require_once(VIEWS_PATH."company-list.php");
+    }
+
+    function ShowRegisterView(){
+        require_once(VIEWS_PATH."validate-session.php");
+        require_once(VIEWS_PATH."userCompany-add.php");
+    }
+    ///terminar esta funcion
+    function CheckMail($email){    
+        $alert = new Alert("", "");
+
+        if($this->VerifyEmail($email)){
+
+            try{
+                $company = $this->companyDAO->SearchEmail($email);
+                if($email == $company->getCompanyEmail()){
+                  //registrar usuario en base de datos y anexar el ID
+                }else{
+                    $alert->setType ('danger');
+                    $alert->setMessage('The company was not found. Talk with the admin.');
+                }   
+            }catch(Exception $ex){
+                $alert->setType ('danger');
+                $alert->setMessage('ERROR 405.'); 
+            }finally{
+                $_SESSION['alert'] = $alert;
+                $this->Index();  
+            }
+
+            
+        }else{
+            /// El mail ya se encuentra registrado
+        }
+            
     }
 
     public function Add($companyName, $companyDescription, $companyEmail, $companyPhone, $companyLinkedin, $companyAddress, $companyLink){
@@ -122,7 +158,6 @@ class CompanyController {
     }
 
     public function Remove($idCompany){
-
         $alert = new Alert("", "");
 
         try{
@@ -143,6 +178,20 @@ class CompanyController {
         $companyList = $this->companyDAO->Filter($filterCompany);
 
         require_once(VIEWS_PATH."company-list.php");
+    }
+
+    //Verifica si el email de la compañia ya esta registrado
+    function VerifyEmail($user){
+
+        $userCompanyList = $this->userCompanyDAO->GetAll();
+        $state = true;
+
+        foreach($userCompanyList as $userCompany){
+            if(strcmp($email, $userCompany->getEmail()) == 0){
+                $state = false;
+            }
+        }
+        return $state;
     }
 }
 ?>
