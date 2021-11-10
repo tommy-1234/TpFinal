@@ -2,7 +2,8 @@
     namespace Controllers;
 
     use DAO\UserDAO as UserDAO;
-    use Models\User as User;
+use Models\JobOffer;
+use Models\User as User;
 
     class HomeController
     {
@@ -28,7 +29,6 @@
                 $user->setEmail("admin@admin.com");
                 $_SESSION["loggedUser"] = $user;
                 $_SESSION['loggedAdmin'] = "Admin";
-                
                 header("location:".FRONT_ROOT."JobOffer/ShowListView");
             }
             else if($user != null){

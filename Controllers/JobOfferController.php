@@ -182,7 +182,6 @@ class JobOfferController {
 
         require_once(VIEWS_PATH."joboffer-list.php");
     }
-
 }
 
 ?>

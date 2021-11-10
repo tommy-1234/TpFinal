@@ -48,7 +48,6 @@
         public function getActive(){ return $this->active; }
         public function setActive($active) { $this->active = $active; }
 
-
     }
 
 

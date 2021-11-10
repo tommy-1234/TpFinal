@@ -9,10 +9,10 @@ if(isset($_SESSION['alert'])){
   <main class="hoc container clear"> 
     <!-- main body -->
     <div class="content"> 
-      <div class="scrollable">
-      
+      <div class="scrollable">     
         <br>
         <?php if(isset($_SESSION['loggedAdmin'])){ ?>
+        <form action="<?php echo FRONT_ROOT."JobRequest/RejectedJobOffer"?>" method="post">
         <table style="text-align:center;" class="table table-bordered">
           <thead class="thead-dark">
             <tr>
@@ -22,6 +22,7 @@ if(isset($_SESSION['alert'])){
               <th style ="width: 40%;">Student Name </th>
               <th style ="width: 20%;">Postulation Date</th>
               <th style ="width: 20%;">Active</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>     
@@ -37,13 +38,14 @@ if(isset($_SESSION['alert'])){
                     }else{
                         echo "❌";
                     }?></td>
+                    <td><button type="submit" class="btn" name="jobRequestId" value="<?php echo $jobRequest->getJobRequestsId()?>"> Decline Offer </button></td>
                   </tr>
                   <?php } ?>
           </tbody>
-        </table>
+        </table></form>
         <div class="alert alert-<?php echo $alert->getType()?>" role="alert" style="display: inline-block;  margin:auto">
           <?php echo $alert->getMessage(); ?>
-        </div><!--</form> -->
+        </div>
         <?php } ?>
       </div>
     </div>

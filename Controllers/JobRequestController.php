@@ -16,6 +16,8 @@ class JobRequestController {
     function __construct()
     {
         $this->JobRequestsDAO = new JobRequestsDAO();
+        ini_set("SMTP", "smtp.gmail.com");
+        ini_set("smtp_port", 587);
     }
 
     function Index(){
@@ -40,7 +42,6 @@ class JobRequestController {
 
         try{
 
-            $flag =0;
             $alert = new Alert("", "");
 
             if($this->Verify($_SESSION["loggedUser"])){
@@ -100,6 +101,54 @@ class JobRequestController {
             $_SESSION['alert'] = $alert;
             require_once(VIEWS_PATH."proposals-list.php");
         }
+    }
+
+    function CheckJobOfferExpiration() //check the current date and the expiration date of the job offer, in case of expiration call JobOfferRequestExpired function and remove from the database
+    {      
+        $today = date("Y-m-d");
+        $jobRequestList = $this->JobRequestsDAO->GetAll();
+        foreach($jobRequestList as $jobRequest){
+            if($jobRequest->getJobOffer()->getExpirationDate() < $today){
+                $this->JobOfferRequestExpired($jobRequest->getStudenId(), $jobRequest->getJobOffer());
+                $this->JobRequestsDAO->Remove($jobRequest->getJobRequestsId());
+            }
+        }
+    }
+
+    function JobOfferRequestExpired($student, $jobOffer) //Write the mail for the job offer expired and call the function SentEmail
+    {
+        $to = $student->getEmail();
+        $subject = "Oferta laboral de " . $jobOffer->getCompany()->getCompanyName();
+        $message = "Gracias por haberse postulado al puesto " . $jobOffer->getJobPosition() . ". Lamentablemente ah finalizado la publicacion de la oferta.";
+        $name = $student->getFirstName() . " " . $student->getLastName();
+        $this->SentEmail($to, $subject, $message, $name);
+    }
+
+    function RejectedJobOffer($jobRequestId) //Write the mail for the job offer denied and remove from the database
+    {
+        $jobRequests = $this->JobRequestsDAO->SearchByJobRequestId($jobRequestId);
+        $student = $jobRequests->getStudenId();
+        $to = $student->getEmail();
+        $subject = "Estado de la postulacion laboral ";
+        $message = "Lamentamos informarle pero su postulacion labroal ah sido declinada. Usted puede intentar con otra oferta labrol si asi lo desea.";
+        $name = $student->getFirstName() . " " . $student->getLastName();
+        $this->SentEmail($to, $subject, $message, $name);
+        $this->JobRequestsDAO->Remove($jobRequestId);
+    }
+
+    function SentEmail($to, $subject, $message, $name) //Sent the email.
+    { 
+        $headers = "MIME-Version 1.0" . "\r\n" . "Content-type:text/htmlcharset=iso-8859-1" . "\r\n" . "From: Test <prueba@example.com>" . "\r\n";
+        $mail ="
+        <html>
+            <head><title>Oferta de trabajo</title></head>
+            <body>
+                <h1>Saludos <?php echo $name?></h1>
+                <p><?php echo $message?> </p>
+            </body>
+        </html>
+        ";
+        mail($to, $subject, $mail, $headers);
     }
 }
 ?>

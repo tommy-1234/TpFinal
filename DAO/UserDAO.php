@@ -21,8 +21,6 @@ namespace DAO;
 
             $this->userList = $this->GetAll();
 
-            //$this->RetrieveData();
-
             $users = array_filter($this->userList, function($user) use($userEmail){
                 return $user->getEmail() == $userEmail;
             });
