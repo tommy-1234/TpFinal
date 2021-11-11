@@ -11,13 +11,13 @@ use Models\Company as Company;
         private $tableName = "companies";
         private $connection;
 
-        function Add($company){  //Agrega un usuario de tipo company
+        function Add($UserCompany){  //Agrega un usuario de tipo company
   
             try{
                 $query = "INSERT INTO ".$this->tableName."(companyUserEmail, companyUserPassword) VALUES (:companyUserEmail,:companyUserPassword)";
                 
-                $parameters["companyUserEmail"] = $company->getEmail();
-                $parameters["companyUserPassword"] = $company->getPassword();
+                $parameters["companyUserEmail"] = $UserCompany->getEmail();
+                $parameters["companyUserPassword"] = $UserCompany->getPassword();
                 
                 $this->connection = Connection::GetInstance();
                 $this->connection->ExecuteNonQuery($query, $parameters);

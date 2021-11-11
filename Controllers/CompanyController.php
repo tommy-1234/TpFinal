@@ -38,7 +38,7 @@ class CompanyController {
         require_once(VIEWS_PATH."userCompany-add.php");
     }
     ///terminar esta funcion
-    function CheckMail($email){    
+    function CheckMail($email, $password){    
         $alert = new Alert("", "");
 
         if($this->VerifyEmail($email)){
@@ -46,7 +46,16 @@ class CompanyController {
             try{
                 $company = $this->companyDAO->SearchEmail($email);
                 if($email == $company->getCompanyEmail()){
-                  //registrar usuario en base de datos y anexar el ID
+                    $userCompany = new UserCompany;
+
+                    $userCompany->setEmail($email);
+                    $userCompany->setPassword($password);
+
+                    $this->userCompanyDAO->Add($userCompany);
+
+                    $alert->setType ('success');
+                    $alert->setMessage('Company User added successfully.');
+
                 }else{
                     $alert->setType ('danger');
                     $alert->setMessage('The company was not found. Talk with the admin.');
@@ -59,9 +68,11 @@ class CompanyController {
                 $this->Index();  
             }
 
-            
         }else{
-            /// El mail ya se encuentra registrado
+            $alert->setType ('danger');
+            $alert->setMessage('The company was already charged. Talk with the admin.');
+            $_SESSION['alert'] = $alert;
+            $this->Index();  
         }
             
     }
