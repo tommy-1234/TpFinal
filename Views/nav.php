@@ -37,18 +37,25 @@
                     </div>
                </li>          
           <?php }?>
-          
+
+          <?php if(isset(($_SESSION['loggedStudent']))) {?>
           <li class="nav-item dropdown">
                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">My Profile</a>
                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="<?php echo FRONT_ROOT ?>User/ShowDetailView">My Info</a>
-                    <a class="dropdown-item" href="<?php echo FRONT_ROOT ?>JobRequest/Proposals">My Proposals</a>
-                    
+               <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">My Profile</a>
                </div>
           </li>
+          <?php }?>
 
-
-
+          <?php if(isset(($_SESSION['loggedCompany']))){ ?>
+               <li class="nav-item dropdown">
+               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">My Company</a>
+               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="<?php echo FRONT_ROOT ?>JobOffer/ShowMyOfferList">Job Offers</a>
+               </div>
+               </li>
+          <?php }?>
+          
           <li class="nav-item">
                <a class="nav-link" href="<?php echo FRONT_ROOT ?>Home/Logout">Logout</a>
           </li>  

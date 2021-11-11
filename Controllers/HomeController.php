@@ -41,13 +41,15 @@ use Models\User as User;
                 // verifico si el usuario esta activo
                 if($user->getActive()){
                     $_SESSION["loggedUser"] = $user;
+                    $_SESSION["loggedStudent"] = "student";
                     header("location:".FRONT_ROOT."JobOffer/ShowListView");
                 }else{
                     $this->Index('Inactive user, please contact with the UTN.');
                 }
             }else if($userCompany != null){
                 $_SESSION["loggedUser"] = $userCompany;
-                header("location:".FRONT_ROOT."JobOffer/ShowListView");
+                $_SESSION['loggedCompany'] = "UserCompany";
+                header("location:".FRONT_ROOT."JobOffer/ShowMyOfferList");
             }else
                 $this->Index("Incorrect username");
         }

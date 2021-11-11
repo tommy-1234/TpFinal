@@ -30,7 +30,7 @@ if(isset($_SESSION['alert'])){
               <th style ="width: 20%;">Job Position</th>
               <th style ="width: 15%;">Hourly Load</th>
               <th style ="width: 10%;">
-              <?php if(isset($_SESSION['loggedAdmin'])){ ?>
+              <?php if(!isset($_SESSION['loggedStudent'])){ ?>
                   <button type="submit" name="" class="btn" value="" formaction="<?php echo FRONT_ROOT."JobOffer/ShowAddView" ?>" >New Job Offer</button>
               <?php } ?>
               </th> 
@@ -51,7 +51,7 @@ if(isset($_SESSION['alert'])){
                       <button type="submit" class="btn" name="jobOfferId" value="<?php echo $JobOffer->getJobOfferId()?> "formaction="<?php echo FRONT_ROOT."JobOffer/ShowDetail"?>" method="post"> More Details </button>
                     </td>
 
-                    <?php if(!isset($_SESSION['loggedAdmin'])){ ?>
+                    <?php if(isset($_SESSION['loggedStudent'])){ ?>
                     <td>
                       <button type="submit" class="btn" name="jobOfferId" value="<?php echo $JobOffer->getJobOfferId()?> "formaction="<?php echo FRONT_ROOT."JobRequest/Add"?>" method="post"> Postulate </button>
                     </td>

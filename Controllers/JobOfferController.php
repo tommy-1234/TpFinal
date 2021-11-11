@@ -34,6 +34,13 @@ class JobOfferController {
         require_once(VIEWS_PATH."joboffer-list.php");
     }
 
+    function ShowMyOfferList(){
+        require_once(VIEWS_PATH."validate-session.php");
+        $userCompany = $_SESSION["loggedUser"];
+        $JobOfferList = $this->JobOfferDAO->GetAllByCompany($userCompany->getCompany()->getIdCompany());
+        require_once(VIEWS_PATH."joboffer-list.php");
+    }
+
     public function ShowDetail($jobOfferId){
         require_once(VIEWS_PATH."validate-session.php");
         $JobOffer = $this->JobOfferDAO->GetById($jobOfferId);
