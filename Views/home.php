@@ -16,8 +16,8 @@
            <?php echo $message ?>
       </div>
     </form>
-    <form action="<?php echo FRONT_ROOT."Company/ShowAddView" ?>" method="post">
-      <button class="btn btn-lg btn-primary btn-block" type="submit">Register as student</button>  
+    <form action="<?php echo FRONT_ROOT."Company/ShowAddView" ?>" method="post" class="form-signin">
+      <!--<button class="btn btn-lg btn-primary btn-block" type="submit">Register as student</button>   -->
       <button class="btn btn-lg btn-primary btn-block" type="submit" formaction="<?php echo FRONT_ROOT."Company/ShowRegisterView" ?>">Register as company</button>
     </form>
 </div>
