@@ -204,6 +204,23 @@ class JobRequestsDAO implements IJobRequests
         } 
     }
 
+    function getPostulatedCount($jobOfferId){
+        
+        $count=0;
+
+        $query = "SELECT * FROM ".$this->tableName ." inner join joboffer on jobrequests.jobOfferId = joboffer.jobOfferId where jobrequests.jobOfferId = ".$jobOfferId;
+
+        $this->connection = Connection::GetInstance();
+        $resultSet = $this->connection->Execute($query);
+
+        foreach($resultSet as $row){
+            $count++;
+        }
+
+        return $count;
+
+    }
+
     function SearchByStudenId($studentId){
         try{
             

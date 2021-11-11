@@ -44,28 +44,35 @@ class JobRequestController {
 
             $alert = new Alert("", "");
 
-            if($this->Verify($_SESSION["loggedUser"])){
-
-                $jobRequests = new JobRequests();
-
-                $jobOffer = new JobOffer();
-                $jobOffer->setJobOfferId($jobOfferId);
-
-                $jobRequests->setJobOffer($jobOffer);
-                $jobRequests->setStudenId($_SESSION["loggedUser"]);
-
-                $jobRequests->setPostulationDate(date("Y-m-d"));
-                $jobRequests->setJobRequestsActive("1");
+            if($this->JobRequestsDAO->getPostulatedCount($jobOfferId) < 5){
                 
-                $this->JobRequestsDAO->Add($jobRequests);
+                if($this->Verify($_SESSION["loggedUser"])){
 
-                $alert->setType ('success');
-                $alert->setMessage('You have successfully applied for a job.');
-                
+                    $jobRequests = new JobRequests();
+
+                    $jobOffer = new JobOffer();
+                    $jobOffer->setJobOfferId($jobOfferId);
+
+                    $jobRequests->setJobOffer($jobOffer);
+                    $jobRequests->setStudenId($_SESSION["loggedUser"]);
+
+                    $jobRequests->setPostulationDate(date("Y-m-d"));
+                    $jobRequests->setJobRequestsActive("1");
+                    
+                    $this->JobRequestsDAO->Add($jobRequests);
+
+                    $alert->setType ('success');
+                    $alert->setMessage('You have successfully applied for a job.');
+                    
+                }else{
+                    $alert->setType ('danger');
+                    $alert->setMessage('You are already applied for a job.');
+                }
             }else{
                 $alert->setType ('danger');
-                $alert->setMessage('You are already applied for a job');
+                $alert->setMessage('The number of applications for this offer is already full.');
             }
+
         }catch(Exception $ex){
             $alert->setType ('danger');
             $alert->setMessage('Failed to applied to the job offer. Try again.');
