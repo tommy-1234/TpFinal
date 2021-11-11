@@ -40,10 +40,12 @@ use Models\Company as Company;
                 $this->connection = Connection::GetInstance();
                 $resultSet = $this->connection->Execute($query, $parameters);
 
-                $UserCompany = new UserCompany();
+                $UserCompany = null;
+
 
                 if(isset ($resultSet[0])){
 
+                    $UserCompany = new UserCompany();
                     $row = $resultSet[0];
                 
                     $UserCompany->setEmail($row["userCompanyMail"]);
