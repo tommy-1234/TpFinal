@@ -83,3 +83,13 @@ CREATE TABLE students (
   CONSTRAINT fk_student_careerId FOREIGN KEY (careerId) REFERENCES career (careerId) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+DROP TABLE IF EXISTS usercompanies;
+CREATE TABLE usercompanies(
+userCompanyId int(11) NOT NULL AUTO_INCREMENT,
+userCompanyMail varchar(30) not null,
+userCompanyPassword varchar(30) not null,
+companyId int(11) NOT NULL,
+constraint pk_userCompanyId primary key (userCompanyId),
+constraint fk_companyId foreign key (companyId) references companies (companyId)
+);
+

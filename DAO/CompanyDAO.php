@@ -89,20 +89,23 @@ use Models\Company as Company;
                 $this->connection = Connection::GetInstance();
                 $resultSet = $this->connection->Execute($query, $parameters);
 
-                $row = $resultSet[0];
 
                 $company = new Company();
 
-                $company->setIdCompany($row["companyId"]);
-                $company->setCompanyName($row["companyName"]);
-                $company->setCompanyDescription($row["companyDescription"]);
-                $company->setCompanyEmail($row["companyEmail"]);
-                $company->setCompanyPhone($row["companyPhone"]);
-                $company->setCompanyLinkedin($row["companyLinkedin"]);
-                $company->setCompanyAddress($row["companyAddres"]);
-                $company->setCompanyLink($row["companyLink"]);
+                if(isset ($resultSet[0])){
 
-                return $company;           
+                    $row = $resultSet[0];
+                    
+                    $company->setIdCompany($row["companyId"]);
+                    $company->setCompanyName($row["companyName"]);
+                    $company->setCompanyDescription($row["companyDescription"]);
+                    $company->setCompanyEmail($row["companyEmail"]);
+                    $company->setCompanyPhone($row["companyPhone"]);
+                    $company->setCompanyLinkedin($row["companyLinkedin"]);
+                    $company->setCompanyAddress($row["companyAddres"]);
+                    $company->setCompanyLink($row["companyLink"]); 
+                }
+                return $company;          
                 
             }catch(Exception $ex){
 

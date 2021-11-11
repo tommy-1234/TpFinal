@@ -15,10 +15,10 @@ class CompanyController {
 
     public function __construct(){
         $this->companyDAO = new CompanyDAO();
-        $this->userCompanyDAO = new ;
+        $this->userCompanyDAO = new userCompanyDAO();
     }
 
-    public function Index(){
+    public function Index($message = ""){
         require_once(VIEWS_PATH."home.php");
     }
 
@@ -34,47 +34,27 @@ class CompanyController {
     }
 
     function ShowRegisterView(){
-        require_once(VIEWS_PATH."validate-session.php");
+        
         require_once(VIEWS_PATH."userCompany-add.php");
     }
-    ///terminar esta funcion
+
     function CheckMail($email, $password){    
-        $alert = new Alert("", "");
 
         if($this->VerifyEmail($email)){
-
-            try{
-                $company = $this->companyDAO->SearchEmail($email);
-                if($email == $company->getCompanyEmail()){
-                    $userCompany = new UserCompany;
-
-                    $userCompany->setEmail($email);
-                    $userCompany->setPassword($password);
-
-                    $this->userCompanyDAO->Add($userCompany);
-
-                    $alert->setType ('success');
-                    $alert->setMessage('Company User added successfully.');
-
-                }else{
-                    $alert->setType ('danger');
-                    $alert->setMessage('The company was not found. Talk with the admin.');
-                }   
-            }catch(Exception $ex){
-                $alert->setType ('danger');
-                $alert->setMessage('ERROR 405.'); 
-            }finally{
-                $_SESSION['alert'] = $alert;
-                $this->Index();  
-            }
-
+            $company = $this->companyDAO->SearchEmail($email);
+            if($email == $company->getCompanyEmail()){
+                $userCompany = new UserCompany;
+                $userCompany->setEmail($email);
+                $userCompany->setPassword($password);
+                $userCompany->setCompany($company);
+                $this->userCompanyDAO->Add($userCompany);
+                $this->Index('Company User added successfully.'); 
+            }else{
+                $this->Index('The company was not found. Talk with the admin.'); 
+            } 
         }else{
-            $alert->setType ('danger');
-            $alert->setMessage('The company was already charged. Talk with the admin.');
-            $_SESSION['alert'] = $alert;
-            $this->Index();  
-        }
-            
+            $this->Index('The company was already charged.');         
+        }   
     }
 
     public function Add($companyName, $companyDescription, $companyEmail, $companyPhone, $companyLinkedin, $companyAddress, $companyLink){
@@ -192,7 +172,7 @@ class CompanyController {
     }
 
     //Verifica si el email de la compañia ya esta registrado
-    function VerifyEmail($user){
+    function VerifyEmail($email){
 
         $userCompanyList = $this->userCompanyDAO->GetAll();
         $state = true;
