@@ -35,10 +35,15 @@ class JobRequestsDAO implements IJobRequests
         }
     }
 
-    function Remove($id)  //Remove JobRequest from the data base by id. HHHHHAAAACCCCEEEERRR(borrar eso una vez hecho)
+    function Remove($jobRequestId)  //Remove JobRequest from the data base by id.
     {
         try{
-            echo "Remove from DataBase" ; 
+            $query = "DELETE FROM ".$this->tableName." WHERE (jobRequestId = :jobRequestId)";
+
+            $parameters["jobRequestId"] =  $jobRequestId;
+
+            $this->connection = Connection::GetInstance();
+            $this->connection->ExecuteNonQuery($query, $parameters);
         }catch(Exception $ex){
             throw $ex;
         }

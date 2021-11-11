@@ -141,6 +141,7 @@ class JobRequestController {
         $name = $student->getFirstName() . " " . $student->getLastName();
         $this->SentEmail($to, $subject, $message, $name);
         $this->JobRequestsDAO->Remove($jobRequestId);
+        $this->ShowListView();
     }
 
     function SentEmail($to, $subject, $message, $name) //Sent the email.
