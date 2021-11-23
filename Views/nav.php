@@ -42,7 +42,7 @@
           <li class="nav-item dropdown">
                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">My Profile</a>
                <div class="dropdown-menu">
-               <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">My Profile</a>
+               <a class="dropdown-item" href="<?php echo FRONT_ROOT ?>User/ShowDetailView">My Info</a>
                </div>
           </li>
           <?php }?>

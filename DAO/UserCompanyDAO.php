@@ -107,9 +107,6 @@ use Models\Company as Company;
                 throw $ex;
 
             }
-        }
-
-        
-
+        } 
     }
 ?>

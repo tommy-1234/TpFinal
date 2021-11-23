@@ -8,6 +8,8 @@
       <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
       <label for="inputEmail" class="sr-only">Email address</label>
       <input type="email" id="inputEmail" name="userEmail" class="form-control" placeholder="Email address" autofocus>
+      <label for="inputPasswird" class="sr-only">Password</label>
+      <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" autofocus>
       <br>
       <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
       <br>
@@ -19,5 +21,6 @@
     <form action="<?php echo FRONT_ROOT."Company/ShowAddView" ?>" method="post" class="form-signin">
       <!--<button class="btn btn-lg btn-primary btn-block" type="submit">Register as student</button>   -->
       <button class="btn btn-lg btn-primary btn-block" type="submit" formaction="<?php echo FRONT_ROOT."Company/ShowRegisterView" ?>">Register as company</button>
+      <button class="btn btn-lg btn-primary btn-block" type="submit" formaction="<?php echo FRONT_ROOT."User/ShowRegisterView" ?>">Register as student</button>
     </form>
 </div>

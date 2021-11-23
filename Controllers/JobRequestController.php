@@ -13,7 +13,6 @@ use Models\PHPMailer as PHPMailer;
 class JobRequestController {
 
     private $JobRequestsDAO;
-    
 
     function __construct()
     {
@@ -35,6 +34,25 @@ class JobRequestController {
         }finally{
             $_SESSION['alert'] = $alert;
             require_once(VIEWS_PATH."jobRequest-list.php");
+        }
+    }
+
+    function ShowPostulationView($jobOfferId){
+        require_once(VIEWS_PATH."validate-session.php");
+
+        if($this->Verify($_SESSION["loggedUser"])){
+
+            $_SESSION["jobOfferId"] = $jobOfferId;
+            require_once(VIEWS_PATH."postulation.php"); 
+
+        }else{
+
+            $alert = new Alert("", "");
+            $alert->setType ('danger');
+            $alert->setMessage('You are already applied for a job.');
+
+            $_SESSION['alert'] = $alert;
+            header("location:".FRONT_ROOT."JobOffer/ShowListView");
         }
     }
 
@@ -93,6 +111,12 @@ class JobRequestController {
             }
         }
         return $state;
+    }
+
+    function Postulation($newFile)
+    {       
+        $this->JobRequestsDAO->Postulation($newFile);
+        $this->Add($_SESSION["jobOfferId"]);
     }
 
     function Proposals(){

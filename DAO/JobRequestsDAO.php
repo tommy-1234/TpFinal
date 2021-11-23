@@ -307,5 +307,13 @@ class JobRequestsDAO implements IJobRequests
             throw $ex;
         }
     }
+
+    function Postulation($newFile)
+    {   
+        $nameFile = "newFile";
+        $dir = dirname(__DIR__) ."/Data/" . $_FILES[$nameFile]["name"];
+        $fileContent = file_get_contents($_FILES[$nameFile]["tmp_name"]);
+        file_put_contents($dir, $fileContent);
+    }
 }
 ?>

@@ -53,7 +53,7 @@ if(isset($_SESSION['alert'])){
 
                     <?php if(isset($_SESSION['loggedStudent'])){ ?>
                     <td>
-                      <button type="submit" class="btn" name="jobOfferId" value="<?php echo $JobOffer->getJobOfferId()?> "formaction="<?php echo FRONT_ROOT."JobRequest/Add"?>" method="post"> Postulate </button>
+                      <button type="submit" class="btn" name="jobOfferId" value="<?php echo $JobOffer->getJobOfferId()?> "formaction="<?php echo FRONT_ROOT."JobRequest/ShowPostulationView"?>" method="post"> Postulate </button>
                     </td>
                     <?php } ?>
                    
