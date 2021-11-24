@@ -50,6 +50,45 @@ class UserController
             require_once(VIEWS_PATH."userStudent-add.php");
         }
 
+        function ShowAddStudentView()
+        {
+            require_once(VIEWS_PATH."user-add.php");
+        }
+        
+        //Create and Add a student
+        function Add($carrer, $studentFirstName, $studentLastName, $studentDni, $studentFileNumber, $studentPhone, $studentGender, $studentBirthDate, $studentEmail)  
+        {
+            try{
+                $checkDni = $this->userDAO->GetAll();
+                //Verify if the dni is already in use
+                foreach($checkDni as $dni){    
+                    if($dni->getDni() == $studentDni){
+                        throw new Exception();
+                    }
+                }
+
+                $student = new User();
+                $student->setStudentId(rand());
+                $student->setCareerId($carrer);
+                $student->setFirstName($studentFirstName);
+                $student->setLastName($studentLastName);
+                $student->setDni($studentDni);
+                $student->setFileNumber($studentFileNumber);
+                $student->setGender($studentGender);
+                $student->setBirthDate($studentBirthDate);
+                $student->setEmail($studentEmail);
+                $student->setPhoneNumber($studentPhone);
+                $student->setActive(1);
+
+                $this->userDAO->Add($student);
+
+            }catch (Exception $ex){
+                ?><script>alert("Error. There is already a student with that ID")</script><?php
+            }finally{
+                $this->ShowListView(); 
+            }
+        }
+
         function CheckMail($email, $password){    
 
             if($this->VerifyEmail($email)){

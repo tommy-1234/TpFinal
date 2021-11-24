@@ -10,9 +10,17 @@ if(isset($_SESSION['alert'])){
     <!-- main body -->
     <div class="content"> 
       <div class="scrollable">
+
+      <br>
+      <form action="<?php echo FRONT_ROOT."User/ShowAddStudentView"?>" method="post">
+        <input type="submit" value="Add new Student">
+      </form>
       
         <br>
         <?php if(isset($_SESSION['loggedAdmin'])){ ?>
+        <div class="alert alert-<?php echo $alert->getType()?>" role="alert" style="display: inline-block;  margin:auto">
+          <?php echo $alert->getMessage(); ?>
+        </div>
         <table style="text-align:center;" class="table table-bordered">
           <thead class="thead-dark">
             <tr>
@@ -51,9 +59,7 @@ if(isset($_SESSION['alert'])){
                   <?php } ?>
           </tbody>
         </table>
-        <div class="alert alert-<?php echo $alert->getType()?>" role="alert" style="display: inline-block;  margin:auto">
-          <?php echo $alert->getMessage(); ?>
-        </div><!--</form> -->
+        <!--</form> -->
         <?php } ?>
       </div>
     </div>

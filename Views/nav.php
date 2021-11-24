@@ -18,7 +18,7 @@
 
           -->
 
-          <li class="nav-item dropdown">
+          <li class="nav-item dropdown">   <!-- Nav for all the users -->
                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Companies</a>
                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="<?php echo FRONT_ROOT ?>Company/ShowListView">List</a>
@@ -26,7 +26,7 @@
                </div>
           </li>      
 
-          <?php if(isset($_SESSION['loggedAdmin'])){ ?>
+          <?php if(isset($_SESSION['loggedAdmin'])){ ?>  <!-- Nav for only the ADMIN -->
                <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin</a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -38,7 +38,7 @@
                </li>          
           <?php }?>
 
-          <?php if(isset(($_SESSION['loggedStudent']))) {?>
+          <?php if(isset(($_SESSION['loggedStudent']))) {?>   <!-- Nav for only the STUDENT -->
           <li class="nav-item dropdown">
                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">My Profile</a>
                <div class="dropdown-menu">
@@ -47,7 +47,7 @@
           </li>
           <?php }?>
 
-          <?php if(isset(($_SESSION['loggedCompany']))){ ?>
+          <?php if(isset(($_SESSION['loggedCompany']))){ ?>   <!-- Nav for only the COMPANY -->
                <li class="nav-item dropdown">
                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">My Company</a>
                <div class="dropdown-menu" aria-labelledby="navbarDropdown">

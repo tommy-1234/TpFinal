@@ -67,7 +67,7 @@ CREATE TABLE jobrequests (
 
 DROP TABLE IF EXISTS students;
 CREATE TABLE students (
-  studentId int(11) NOT NULL,
+  studentId int(11) NOT NULL AUTO_INCREMENT,
   careerId int(11) NOT NULL,
   firstName varchar(30) DEFAULT NULL,
   lastName varchar(30) DEFAULT NULL,
